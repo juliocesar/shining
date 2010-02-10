@@ -1,8 +1,10 @@
 (function($) {
   $.shining = function() {
+    var PENDING = '.fades-in-zoom';
     
     $.extend($.shining, {
-      firstPage: function() { firstPage() }
+      firstPage: function() { firstPage() },
+      runPending: function() { runPending() }
     })
     
     function init() {
@@ -15,10 +17,10 @@
         callback();
       });
     };
-    
+        
     function firstPage() {
-      $.get(pagePath($.shining.pages.intro), function(page) {
-        $('#stage').append(page);
+      $('#stage').load(pagePath($.shining.pages.intro), function() {
+        $(PENDING).addClass('done');
       });
     };
     
@@ -30,4 +32,3 @@
   };
   $.shining();
 })(jQuery);
-

@@ -10,17 +10,15 @@ del { text-decoration : line-through }
 
 body  { 
   font: 12px/1.5 "Lucida Grande", Tahoma, serif;
-  background-color: #000
+  background-color: #000;
+  overflow: hidden;
 }
 
 #stage  { 
   position: fixed;
-  top: 20px;
-  right: 20px;
-  bottom: 20px;
-  left: 20px;
+  top: 33%;
+  left: 33%;
 }
-#stage > *  { margin: 0 auto }
 
 /* classes for disabling things */
 .no-text-shadow { text-shadow: none }
