@@ -1,10 +1,26 @@
 .fades-in-zoom   { 
   opacity: 0.2;
   -webkit-transform: scale(0.8);
+  -webkit-transition: all 0.5s ease-out;
 }
 .fades-in-zoom.done {
   opacity: 1;
   -webkit-transform: scale(1);
-  -webkit-transition: all 0.5s ease-out;
+}
+
+@-webkit-keyframes shines {
+  0%    { text-shadow: none }
+  25%   { text-shadow: rgb(255, 255, 255) -30px 0px 100px }
+  50%   { text-shadow: rgb(255, 255, 255) 0px 0px 200px }
+  75%%   { text-shadow: rgb(255, 255, 255) 30px 0px 100px }  
+  100%  { text-shadow: none }
+}
+
+.shines {
+  text-shadow: none;
+  -webkit-animation-name: shines;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
 }
 

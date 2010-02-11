@@ -14,11 +14,12 @@ body  {
   overflow: hidden;
 }
 
+#outer  { height: 100%; width: 100%; display: table;  }
 #stage  { 
-  position: fixed;
+/*  position: fixed;
   top: 33%;
   left: 33%;
-}
+*/}
 
 /* classes for disabling things */
 .no-text-shadow { text-shadow: none }
