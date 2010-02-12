@@ -1,33 +1,34 @@
 (function($) {
   $.shining = function() {
-    var PENDING = '.fades-in-zoom';
+    
+    String.prototype.markup = function() { return this + '.html' };
+    String.prototype.script = function() { return this + '.js' };
+    
+    function page(number) {
+      return 'pages/' + $.shining.pages[number];
+    };
     
     $.extend($.shining, {
       firstPage: function() { firstPage() },
-      runPending: function() { runPending() }
-    })
+      page: page
+    });
     
     function init() {
-      fetchPages(function() { firstPage() });
+      fetchPages(function() { getPage(0) });
     };
     
     function fetchPages(callback) {
       $.getJSON('pages.json', function(pages) {
         $.shining.pages = pages;
-        callback();
-      });
-    };
-        
-    function firstPage() {
-      $('#stage').load(pagePath($.shining.pages.intro), function() {
-        $(PENDING).addClass('done');
+        callback.call();
       });
     };
     
-    function pagePath(page) {
-      return 'pages/' + page;
+    function getPage(number) {
+      $('#stage').load(page(number).markup());
+      $.getScript(page(number).script());
     }
-    
+            
     init();
   };
   $.shining();
