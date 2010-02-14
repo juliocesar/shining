@@ -1,5 +1,6 @@
 (function($) {
   $.shining = function() {
+    $.shining.current = 0;
     
     String.prototype.markup = function() { return this + '.html' };
     String.prototype.script = function() { return this + '.js' };
@@ -9,12 +10,14 @@
     };
     
     $.extend($.shining, {
-      firstPage: function() { firstPage() },
+      firstSlide:     function() { getSlide(0) },
+      nextSlide:      function() { getSlide($.shining.current++) },
+      previousSlide:  function() { getSlide($.shining.current--) },
       page: page
     });
     
     function init() {
-      fetchPages(function() { getPage(0) });
+      fetchPages(function() { getSlide(0) });
     };
     
     function fetchPages(callback) {
@@ -24,12 +27,22 @@
       });
     };
     
-    function getPage(number) {
+    function getSlide(number) {
       $('#stage').load(page(number).markup());
-      $.getScript(page(number).script());
+      $.get(page(number).script(), function(script) { with($.shining.context) { eval(script) } });
     }
             
     init();
   };
+  
+  // gives page scripts a context for execution
+  $.shining.context = $.noop;
+  with ($.shining.context) {
+    this.at = function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) };
+    this.nextSlide = function() { $.shining.nextSlide(); };
+    this.previousSlide = function() { $.shining.previousSlide(); };
+  }
+  
+  // boots!
   $.shining();
 })(jQuery);
