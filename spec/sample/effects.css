@@ -1,0 +1,76 @@
+.fades-in-zoom   { 
+  opacity: 1;
+  -webkit-animation-name: fades-in-zoom;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.shines {
+  text-shadow: none;
+  -webkit-animation-name: shines;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+}
+
+.dances {
+  -webkit-animation-name: dances;
+  -webkit-animation-duration: 8s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.y-spin {
+  -webkit-animation-name: y-spin;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.x-spin {
+  -webkit-animation-name: x-spin;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes fades-in-zoom {
+  0%    { opacity: 0; -webkit-transform: scale(0.8) }
+  100%  { opacity: 1; -webkit-transform: scale(1) }
+}
+
+@-webkit-keyframes shines {
+  0%    { text-shadow: none }
+  25%   { text-shadow: rgb(255, 255, 255) -30px 0px 100px }
+  50%   { text-shadow: rgb(255, 255, 255) 0px 0px 200px }
+  75%   { text-shadow: rgb(255, 255, 255) 30px 0px 100px }  
+  100%  { text-shadow: none }
+}
+
+@-webkit-keyframes y-spin {
+  0%    { -webkit-transform: rotateY(0deg) }
+  50%   { -webkit-transform: rotateY(180deg) }
+  100%  { -webkit-transform: rotateY(360deg) }
+}
+
+@-webkit-keyframes x-spin {
+  0%    { -webkit-transform: rotateX(0deg) }
+  50%   { -webkit-transform: rotateX(180deg) }
+  100%  { -webkit-transform: rotateX(360deg) }
+}
+
+@-webkit-keyframes dances {
+  0%    { -webkit-transform: skew(10deg); -webkit-transform: scale(1.1) }
+  9%    { -webkit-transform: skew(20deg); -webkit-transform: scale(0.9) }
+  18%   { -webkit-transform: skew(30deg); -webkit-transform: scale(1.1) }
+  27%   { -webkit-transform: skew(20deg); -webkit-transform: scale(0.9) }
+  36%   { -webkit-transform: skew(10deg); -webkit-transform: scale(1.1) }
+  45%   { -webkit-transform: skew(0deg) }
+  54%   { -webkit-transform: skew(-10deg); -webkit-transform: scale(1.1) }  
+  63%   { -webkit-transform: skew(-20deg); -webkit-transform: scale(0.9) }    
+  72%   { -webkit-transform: skew(-30deg); -webkit-transform: scale(1.1) }
+  81%   { -webkit-transform: skew(-20deg); -webkit-transform: scale(0.9) }
+  90%   { -webkit-transform: skew(-10deg); -webkit-transform: scale(1.1) } 
+  100%   { -webkit-transform: skew(0deg) }
+}

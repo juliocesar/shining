@@ -38,9 +38,9 @@
   // gives page scripts a context for execution
   $.shining.context = $.noop;
   with ($.shining.context) {
-    this.at = function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) };
-    this.nextSlide = function() { $.shining.nextSlide(); };
-    this.previousSlide = function() { $.shining.previousSlide(); };
+    this.at =             function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) };
+    this.nextSlide =      function() { $.shining.nextSlide(); };
+    this.previousSlide =  function() { $.shining.previousSlide(); };
   }
   
   // boots!

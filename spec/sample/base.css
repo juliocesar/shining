@@ -1,0 +1,33 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+----------------------------------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+margin : 0; padding : 0; border : 0; outline : 0; font-size : 100%; vertical-align : baseline; background : transparent; }
+body { line-height : 1; }
+ol, ul { list-style-type : none; }
+:focus { outline : 0 } 
+ins { text-decoration : none; }
+del { text-decoration : line-through }
+
+body  { 
+  font: 12px/1.5 "Lucida Grande", Tahoma, serif;
+  background-color: #000;
+  overflow: hidden;
+}
+
+#outer  { height: 100%; width: 100%; display: table;  }
+#stage  { 
+/*  position: fixed;
+  top: 33%;
+  left: 33%;
+*/}
+
+/* classes for disabling things */
+.no-text-shadow { text-shadow: none }
+.no-drop-shadow {}
+.hidden         { display: none }
+
+h1  { font-size: 3.4em }
+h2  { font-size: 3em }
+h3  { font-size: 2.8em }
+
+h1, h2, h3, p { text-align: center }
