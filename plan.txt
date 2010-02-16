@@ -3,15 +3,17 @@
 # Why
   Why webkit + CSS.
 # Because
-  Because Webkit is ahead of everyone else. And CSS3 is presentational. And Webkit
-  implements some really cool stuff from CSS3.
-# Why bother
+  Because Webkit is ahead of every other engine. And CSS3 is presentational. And Webkit
+  implements some really cool stuff from CSS3 such as transitions and transforms.
+  Webkit also implements animations. Some people argue this should be in the Javascript
+  realm. I'm not too sure about that.
+# Why bother?
   Shining is a framework, like Rails is for web apps, though a lot smaller, and hopefully
   it will stay like that. Presentations are, in a nutshell, words and images.
   And sometimes *cough* audio. But why not really? HTML5 supports all that and video
   without relying on plugins.
-# Aimed at who
-  You need *basic* skills with:
+# Aimed at who?
+  You need *very* basic skills with:
     - HTML
     - JS
   Most of the time you'll lay down a heading, paragraphs, lists (mandatory presentation
@@ -31,5 +33,43 @@
   MS Powerpoint. I never used Keynote in my life so I can't opine on it.
   How easier? All you have to do is add CSS classes onto elements.
   E.g.: <h1 class="shines">Ahoy</h1>  <- this heading shines when rendered
-# What are slides?
-  Slides are just HTML.
+  Also, you can have themes!.
+# Themes
+  Themes are just CSS files. Though they only override what's necessary to change
+  colours. It could go beyond that of course. At the time.
+  They sit in ROOT/themes. And yeah, I'm planning on having theme transitions too
+  for added coolness.
+# What are slides made of?
+  Slides are just HTML. They sit in ROOT/slides. The slide index is a JSON file 
+  (ROOT/slides.json). <captain type="obvious">They define the order in which your 
+  slides will appear</captain>.
+# Slide scripts
+  Each slide can have a script along with it. "script" as in it dictates what will
+  happen and when as that slide gets shown. Like for instance:
+  ## code ##
+    at(3, function() { $('#someheading').effect('fadesin') }) // self explanatory
+    at(10, nextSlide)  // 10 seconds in, head to the next slide
+  ## code ##
+  There's a tiny... DSL so to speak. They're actually just shortcuts. Then again,
+  that's what any DSL is right. The above is just Javascript. For the awesome among
+  us, feel free to do what you want with the page.
+# Slide scripts (2)
+  You're free to use Javascript. jQuery is also available (Shining is built on jQuery).
+  Think about the possibilities:
+    - pull tweets to inside a presentation.
+    - pull Flickr photos and polaroid them.
+  In practice you might wanna make sure something works when presenting, but who
+  knows, it's there and it's free.
+# What about node.js?
+  Why would I use it?  :)
+# To sum it up
+  It's in the browser. HTML5, audio, video, everything is game. And because it's aimed
+  at Webkit, results are predictable. This isn't advocacy (really). You should be
+  able to install either Chrome or Safari on your computer in case you don't already
+  have. In fact maybe you *should* do that even if you're not going to use Shining (now that's advocacy).
+# Thanks!
+  That's all folks!
+  twitter.com/julio_ody
+  julio.ody@gmail.com
+  crazyhollywood.org
+  github.com/juliocesar/shining  <- contributions, kgo.
