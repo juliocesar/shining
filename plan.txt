@@ -1,0 +1,35 @@
+# Welcome
+  Welcome to Shining, one line explanation.
+# Why
+  Why webkit + CSS.
+# Because
+  Because Webkit is ahead of everyone else. And CSS3 is presentational. And Webkit
+  implements some really cool stuff from CSS3.
+# Why bother
+  Shining is a framework, like Rails is for web apps, though a lot smaller, and hopefully
+  it will stay like that. Presentations are, in a nutshell, words and images.
+  And sometimes *cough* audio. But why not really? HTML5 supports all that and video
+  without relying on plugins.
+# Aimed at who
+  You need *basic* skills with:
+    - HTML
+    - JS
+  Most of the time you'll lay down a heading, paragraphs, lists (mandatory presentation
+  bullet points), and images (mandatory photos with double meaning).
+  So yeah, developers, developers. But hopefully markup enthusiasts too.
+# Features
+  Some features:
+    - write in Haml, compile to HTML.
+    - installs via rubygems, gives you a generator a la "rails mywebsite".
+    - it's open sauce (that counts as feature).
+    - syntax highlighting.
+    - anything else you already see on regular web pages (that's really powerful).
+    - and... effects!
+# Effects
+  Many... different... kinds... of... effects.
+  In general it's easier (IMO) to make it look better/smoother than something done in
+  MS Powerpoint. I never used Keynote in my life so I can't opine on it.
+  How easier? All you have to do is add CSS classes onto elements.
+  E.g.: <h1 class="shines">Ahoy</h1>  <- this heading shines when rendered
+# What are slides?
+  Slides are just HTML.
