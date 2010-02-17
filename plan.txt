@@ -1,8 +1,6 @@
 # Welcome
   Welcome to Shining, one line explanation.
-# Why
-  Why webkit + CSS.
-# Because
+# Why webkit + CSS?
   Because Webkit is ahead of every other engine. And CSS3 is presentational. And Webkit
   implements some really cool stuff from CSS3 such as transitions and transforms.
   Webkit also implements animations. Some people argue this should be in the Javascript

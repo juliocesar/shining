@@ -1,32 +1,45 @@
 (function($) {
   $.shining = function() {
-    $.shining.current = 0;
+    $.shining.slides = {
+      get length()      { return this._slides.length },
+      get current()     { return (typeof this._current == 'undefined' ? this._slides[0] : this._slides[this._current]) },
+      set current(_new) { return this._current = this._slides.indexOf(_new) },
+      get all()         { return this._slides },
+      get first()       { return this._slides[0] },
+      get next()        { return this._slides[ this._slides.indexOf(this.current) + 1 ] },
+      get previous()    { return this._slides[ this._slides.indexOf(this.current) - 1 ] },
+      add: function(slides) { return Array.prototype.push.apply(this._slides, slides) },
+      _slides: [],
+      _current: 0
+    };
     
     String.prototype.markup = function() { return this + '.html' };
     String.prototype.script = function() { return this + '.js' };
     
     $.extend($.shining, {
-      firstSlide:     function() { getSlide(0) },
-      nextSlide:      function() { getSlide($.shining.current++) },
-      previousSlide:  function() { getSlide($.shining.current--) },
-      page: page
+      firstSlide:     function() { return getSlide($.shining.slides.first) },
+      nextSlide:      function() { return getSlide($.shining.slides.next) },
+      previousSlide:  function() { return getSlide($.shining.slides.previous) }
     });
+    function init()         { fetchSlides(function() { getSlide($.shining.slides.current) }) }
     
-    function page(number) { return 'pages/' + $.shining.pages[number] }
-    function init()       { fetchPages(function() { getSlide(0) }) }
+    // helpers
+    function slide(name)  { return 'slides/' + name }
     
-    function fetchPages(callback) {
-      $.getJSON('pages.json', function(pages) {
-        $.shining.pages = pages;
+    function fetchSlides(callback) {
+      $.getJSON('slides.json', function(slides) {
+        $.shining.slides.add(slides);
         callback.call();
       });
     }
     
-    function getSlide(number) {
+    function getSlide(name) {
+      if (!name) return false;
       $('#stage').load(
-        page(number).markup(),
-        function() {
-          $.get(page(number).script(), function(script) { with($.shining.context) { eval(script) } });
+        slide(name).markup(),
+        function(data) {
+          $.shining.slides.current = name;
+          if (data) $.get(slide(name).script(), function(script) { with($.shining.context) { eval(script) } });
         }
       );
     }
@@ -34,7 +47,7 @@
     init();
   }
   
-  // gives page scripts a context for execution
+  // gives slide scripts a context for execution
   $.shining.context = $.noop;
   with ($.shining.context) {
     this.at            = function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) };
