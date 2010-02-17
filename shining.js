@@ -6,6 +6,7 @@
       set current(_new) { return this._current = this._slides.indexOf(_new) },
       get all()         { return this._slides },
       get first()       { return this._slides[0] },
+      get last()        { return this._slides[this._slides.length - 1] },
       get next()        { return this._slides[ this._slides.indexOf(this.current) + 1 ] },
       get previous()    { return this._slides[ this._slides.indexOf(this.current) - 1 ] },
       add: function(slides) { return Array.prototype.push.apply(this._slides, slides) },
@@ -18,10 +19,20 @@
     
     $.extend($.shining, {
       firstSlide:     function() { return getSlide($.shining.slides.first) },
+      lastSlide:      function() { return getSlide($.shining.slides.last ) },
       nextSlide:      function() { return getSlide($.shining.slides.next) },
       previousSlide:  function() { return getSlide($.shining.slides.previous) }
     });
-    function init()         { fetchSlides(function() { getSlide($.shining.slides.current) }) }
+    
+    function init()         { 
+      $(document).ready(function() {
+        $('#controls #first').    click(function() { $.shining.firstSlide() });
+        $('#controls #previous'). click(function() { $.shining.previousSlide() });
+        $('#controls #next').     click(function() { $.shining.nextSlide() });
+        $('#controls #last').     click(function() { $.shining.lastSlide() });        
+      });
+      fetchSlides(function() { getSlide($.shining.slides.current) });
+    }
     
     // helpers
     function slide(name)  { return 'slides/' + name }
