@@ -26,10 +26,10 @@ body  {
   text-align: left;
 }
 
-/* classes for disabling things */
 .no-text-shadow { text-shadow: none }
 .no-drop-shadow {}
 .hidden         { display: none }
+.visible        { opacity: 1; display: static }
 
 h1  { font-size: 3.6em }
 h2  { font-size: 3.2em }
