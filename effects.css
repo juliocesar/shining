@@ -19,9 +19,9 @@
 
 .dances {
   -webkit-animation-name: dances;
-  -webkit-animation-duration: 8s;
+  -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-timing-function: ease-in-out;
 }
 
 .y-spin {
@@ -64,16 +64,13 @@
 }
 
 @-webkit-keyframes dances {
-  0%    { -webkit-transform: skew(10deg); -webkit-transform: scale(1.1) }
-  9%    { -webkit-transform: skew(20deg); -webkit-transform: scale(0.9) }
-  18%   { -webkit-transform: skew(30deg); -webkit-transform: scale(1.1) }
-  27%   { -webkit-transform: skew(20deg); -webkit-transform: scale(0.9) }
-  36%   { -webkit-transform: skew(10deg); -webkit-transform: scale(1.1) }
-  45%   { -webkit-transform: skew(0deg) }
-  54%   { -webkit-transform: skew(-10deg); -webkit-transform: scale(1.1) }  
-  63%   { -webkit-transform: skew(-20deg); -webkit-transform: scale(0.9) }    
-  72%   { -webkit-transform: skew(-30deg); -webkit-transform: scale(1.1) }
-  81%   { -webkit-transform: skew(-20deg); -webkit-transform: scale(0.9) }
-  90%   { -webkit-transform: skew(-10deg); -webkit-transform: scale(1.1) } 
-  100%   { -webkit-transform: skew(0deg) }
+  0%    { -webkit-transform: skew(0deg) scale(1) }
+  12.5% {  -webkit-transform: skew(20deg) scale(1.2) }
+  25%   { -webkit-transform: skew(0deg) scale(1) }
+  37.5%   { -webkit-transform: skew(20deg) scale(1.2) }  
+  50%   { -webkit-transform: skew(0deg) scale(1) }  
+  62.5%   { -webkit-transform: skew(-20deg) scale(1.2) }    
+  75%   { -webkit-transform: skew(0deg) scale(1) }    
+  87.5%   { -webkit-transform: skew(-20deg) scale(1.2) }      
+  100%   { -webkit-transform: skew(0deg) scale(1) }        
 }
