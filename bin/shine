@@ -4,7 +4,7 @@ require 'rubygems'
 require 'fileutils'
 
 ROOT = File.join(File.dirname(__FILE__), '..')
-ACTIONS = {:help_and_exit! => [nil], :new_on => ['build']}
+ACTIONS = {:help_and_exit! => [nil], :new_on! => ['build']}
 
 class String; def /(s) File.join(self, s) end end
 
@@ -14,11 +14,12 @@ def doing(what, &block)
 end
 
 def figure_what_to_do!
+  help_and_exit! if ARGV.empty?
   if ACTIONS.values.flatten.include? ARGV.first
     action = ACTIONS.select { |action, args| args.include? ARGV.first }.flatten.first
     send action, *ARGV[1..(ARGV.length - 1)]
   else
-    new_on ARGV.first
+    new_on! ARGV.first
   end
 end
 
@@ -33,7 +34,7 @@ Shine - Generates a new Shining presentation
   exit -1
 end
 
-def new_on(dir)
+def new_on!(dir)
   target = File.expand_path(dir)
   doing("Creating 'themes' dir in #{target}") { FileUtils.mkdir_p target/'themes' }
   doing("Creating 'slides' dir in #{target}") { FileUtils.mkdir   target/'slides' }
