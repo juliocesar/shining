@@ -3,8 +3,8 @@
 require 'rubygems'
 require 'fileutils'
 
-ROOT = File.join(File.dirname(__FILE__), '..')
-ACTIONS = {:help_and_exit! => [nil], :new_on! => ['build']}
+ROOT    = File.join(File.dirname(__FILE__), '..')
+ACTIONS = {:new_on! => ['build']}
 
 class String; def /(s) File.join(self, s) end end
 
