@@ -1,7 +1,7 @@
 .transparent    { opacity: 0; -webkit-transition: opacity 200ms linear }
 .fades-in       { opacity: 1; -webkit-transition: opacity 200ms linear  }
 
-.fades-in-zoom   { 
+.fades-in-zoom   {
   opacity: 1;
   -webkit-animation-name: fades-in-zoom;
   -webkit-animation-duration: 2s;
@@ -47,7 +47,7 @@
   0%    { text-shadow: none }
   25%   { text-shadow: rgb(255, 255, 255) -30px 0px 100px }
   50%   { text-shadow: rgb(255, 255, 255) 0px 0px 200px }
-  75%   { text-shadow: rgb(255, 255, 255) 30px 0px 100px }  
+  75%   { text-shadow: rgb(255, 255, 255) 30px 0px 100px }
   100%  { text-shadow: none }
 }
 
@@ -67,10 +67,10 @@
   0%    { -webkit-transform: skew(0deg) scale(1) }
   12.5% {  -webkit-transform: skew(20deg) scale(1.2) }
   25%   { -webkit-transform: skew(0deg) scale(1) }
-  37.5%   { -webkit-transform: skew(20deg) scale(1.2) }  
-  50%   { -webkit-transform: skew(0deg) scale(1) }  
-  62.5%   { -webkit-transform: skew(-20deg) scale(1.2) }    
-  75%   { -webkit-transform: skew(0deg) scale(1) }    
-  87.5%   { -webkit-transform: skew(-20deg) scale(1.2) }      
-  100%   { -webkit-transform: skew(0deg) scale(1) }        
+  37.5%   { -webkit-transform: skew(20deg) scale(1.2) }
+  50%   { -webkit-transform: skew(0deg) scale(1) }
+  62.5%   { -webkit-transform: skew(-20deg) scale(1.2) }
+  75%   { -webkit-transform: skew(0deg) scale(1) }
+  87.5%   { -webkit-transform: skew(-20deg) scale(1.2) }
+  100%   { -webkit-transform: skew(0deg) scale(1) }
 }

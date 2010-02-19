@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'fileutils'
+
+ROOT = File.join(File.dirname(__FILE__), '..')
+ACTIONS = {:help_and_exit! => [nil], :new_on => ['build']}
+
+class String; def /(s) File.join(self, s) end end
+
+def doing(what, &block)
+  puts what
+  block.call if block_given?
+end
+
+def figure_what_to_do!
+  if ACTIONS.values.flatten.include? ARGV.first
+    action = ACTIONS.select { |action, args| args.include? ARGV.first }.flatten.first
+    send action, *ARGV[1..(ARGV.length - 1)]
+  else
+    new_on ARGV.first
+  end
+end
+
+def help_and_exit!
+  puts <<-HELP
+Shine - Generates a new Shining presentation
+  Usage:
+    shine <directory>
+  Example:
+    shine mycoolpreso
+  HELP
+  exit -1
+end
+
+def new_on(dir)
+  target = File.expand_path(dir)
+  doing("Creating 'themes' dir in #{target}") { FileUtils.mkdir_p target/'themes' }
+  doing("Creating 'slides' dir in #{target}") { FileUtils.mkdir   target/'slides' }
+  doing("Copying slides.json into #{target}") { FileUtils.cp ROOT/'templates'/'slides.json', target/'slides.json' }
+  doing("Copying slides into #{target}")      { FileUtils.cp_r ROOT/'templates'/'pages', target/'pages' }
+  puts "All done!"
+end
+
+figure_what_to_do!
