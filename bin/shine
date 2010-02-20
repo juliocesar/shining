@@ -4,13 +4,17 @@ require 'rubygems'
 require 'fileutils'
 
 ROOT    = File.join(File.dirname(__FILE__), '..')
-ACTIONS = {:new_on! => ['build']}
+ACTIONS = {:new_on! => ['build'], :new_slide! => ['slide']}
 
 class String; def /(s) File.join(self, s) end end
 
 def doing(what, &block)
   puts what
   block.call if block_given?
+end
+
+def bail!(reason)
+  STDERR.puts(reason) and exit(-2)
 end
 
 def figure_what_to_do!
@@ -24,7 +28,7 @@ def figure_what_to_do!
 end
 
 def help_and_exit!
-  puts <<-HELP
+  STDERR.puts <<-HELP
 Shine - Generates a new Shining presentation
   Usage:
     shine <directory>
@@ -36,11 +40,20 @@ end
 
 def new_on!(dir)
   target = File.expand_path(dir)
-  doing("Creating 'themes' dir in #{target}") { FileUtils.mkdir_p target/'themes' }
-  doing("Creating 'slides' dir in #{target}") { FileUtils.mkdir   target/'slides' }
-  doing("Copying slides.json into #{target}") { FileUtils.cp ROOT/'templates'/'slides.json', target/'slides.json' }
-  doing("Copying slides into #{target}")      { FileUtils.cp_r ROOT/'templates'/'pages', target/'pages' }
-  puts "All done!"
+  doing("Creating #{target/'themes'}")      { FileUtils.mkdir_p target/'themes' }
+  doing("Creating #{target/'slides'}")      { FileUtils.mkdir   target/'slides' }
+  doing("Creating #{target/'slides.json'}") { FileUtils.cp ROOT/'templates'/'slides.json', target/'slides.json' }
+  doing("Creating #{target/'slides'}")      { FileUtils.cp_r ROOT/'templates'/'pages', target/'pages' }
+end
+
+def new_slide!(name)
+  bail!("This isn't a Shining preso!") unless shining?
+  doing("Creating #{Dir.pwd/'slides'/name}.html")  { FileUtils.touch Dir.pwd/'slides'/name + '.html' }
+  doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }  
+end
+
+def shining?
+  File.exists?(Dir.pwd/'slides.json') and File.directory?(Dir.pwd/'slides')
 end
 
 figure_what_to_do!
