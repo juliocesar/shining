@@ -64,13 +64,13 @@
 }
 
 @-webkit-keyframes dances {
-  0%    { -webkit-transform: skew(0deg) scale(1) }
-  12.5% {  -webkit-transform: skew(20deg) scale(1.2) }
-  25%   { -webkit-transform: skew(0deg) scale(1) }
+  0%      { -webkit-transform: skew(0deg) scale(1) }
+  12.5%   {  -webkit-transform: skew(20deg) scale(1.2) }
+  25%     { -webkit-transform: skew(0deg) scale(1) }
   37.5%   { -webkit-transform: skew(20deg) scale(1.2) }
-  50%   { -webkit-transform: skew(0deg) scale(1) }
+  50%     { -webkit-transform: skew(0deg) scale(1) }
   62.5%   { -webkit-transform: skew(-20deg) scale(1.2) }
-  75%   { -webkit-transform: skew(0deg) scale(1) }
+  75%     { -webkit-transform: skew(0deg) scale(1) }
   87.5%   { -webkit-transform: skew(-20deg) scale(1.2) }
-  100%   { -webkit-transform: skew(0deg) scale(1) }
+  100%    { -webkit-transform: skew(0deg) scale(1) }
 }

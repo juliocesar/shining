@@ -10,7 +10,6 @@ del { text-decoration : line-through }
 
 body  { 
   font: 12px/1.5 "Lucida Grande", Tahoma, serif;
-  background-color: #000;
   overflow: hidden;
   text-align: center;
 }
@@ -31,10 +30,10 @@ body  {
 .hidden         { display: none }
 .visible        { opacity: 1; display: static }
 
-h1  { font-size: 3.6em }
-h2  { font-size: 3.2em }
-h3  { font-size: 3em }
-p   { font-size: 1.4em }
+h1    { font-size: 3.6em }
+h2    { font-size: 3.2em }
+h3    { font-size: 3em }
+p, li { font-size: 1.4em }
 
-h1, h2, h3, p { text-align: center }
+h1, h2, h3, p { text-align: center; text-rendering: optimizeLegibility }
 a             { cursor: pointer }
