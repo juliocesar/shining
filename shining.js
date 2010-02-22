@@ -69,7 +69,12 @@
         setTimeout(
           function() {
             loadSlide(name);
-            setTimeout(function() { $('#stage').addClass('fades-in') }, 200);
+            setTimeout(
+              function() { 
+                $('#stage').addClass('fades-in');
+                runSlideScript($.shining.currentScript);
+              }, 
+            200);
           }, 200);
       } else {
         loadSlide(name);
@@ -82,10 +87,20 @@
         slide(name).markup(),
         function(data) {
           $.shining.slides.current = name;
-          if (data) $.get(slide(name).script(), function(script) { with($.shining.context) { eval(script) } });
+          if (data) {
+            $.get(slide(name).script(), function(script) { 
+              if ($.shining.config.transitions) {
+                $.shining.currentScript = script;
+              } else {
+                runSlideScript(script);
+              }
+            }); 
+          }
         }
       );
     }
+    
+    function runSlideScript(script) { with($.shining.context) { eval(script) } };
 
     function slide(name)  { return 'slides/' + name }
 
