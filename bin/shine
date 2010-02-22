@@ -42,8 +42,8 @@ def new_on!(dir)
   target = File.expand_path(dir)
   doing("Creating #{target/'themes'}")      { FileUtils.mkdir_p target/'themes' }
   doing("Creating #{target/'slides'}")      { FileUtils.mkdir   target/'slides' }
-  doing("Creating #{target/'slides.json'}") { FileUtils.cp ROOT/'templates'/'slides.json', target/'slides.json' }
-  doing("Creating #{target/'slides'}")      { FileUtils.cp_r ROOT/'templates'/'pages', target/'pages' }
+  doing("Creating #{target/'config.json'}") { FileUtils.cp ROOT/'templates'/'config.json', target/'config.json' }
+  doing("Creating #{target/'config'}")      { FileUtils.cp_r ROOT/'templates'/'pages', target/'pages' }
 end
 
 def new_slide!(name)
@@ -53,7 +53,7 @@ def new_slide!(name)
 end
 
 def shining?
-  File.exists?(Dir.pwd/'slides.json') and File.directory?(Dir.pwd/'slides')
+  File.exists?(Dir.pwd/'config.json') and File.directory?(Dir.pwd/'slides')
 end
 
 figure_what_to_do!

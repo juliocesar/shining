@@ -28,7 +28,7 @@
       set current(_new) { return this._current = this._slides.indexOf(_new) },
       get all()         { return this._slides },
       get first()       { return this._slides[0] },
-      get last()        { return this._slides[this._slides.length - 1] },
+      get last()        { return this._slides[ this._slides.length - 1 ] },
       get next()        { return this._slides[ this._slides.indexOf(this.current) + 1 ] },
       get previous()    { return this._slides[ this._slides.indexOf(this.current) - 1 ] },
       add: function(slides) { return Array.prototype.push.apply(this._slides, slides) },
@@ -59,21 +59,21 @@
         $('#controls #last').     click(function() { $.shining.lastSlide() });
         $(document).              click(function() { $.shining.nextSlide() });
       });
-      fetchSlides(function() { getSlide($.shining.slides.current) });
+      loadConfig(function() { getSlide($.shining.slides.current) });
     }
-
-    // helpers
-    function slide(name)  { return 'slides/' + name }
-
-    function fetchSlides(callback) {
-      $.getJSON('slides.json', function(slides) {
-        $.shining.slides.add(slides);
-        callback.call();
-      });
-    }
-
+    
     function getSlide(name) {
       if (!name) return false;
+      if ($.shining.config.transitions) {
+        $('#stage').remove('transparent');
+        setTimeout(function() { loadSlide(name) }, 200);
+      } else {
+        loadSlide(name);
+      }
+    }
+    
+    // private
+    function loadSlide(name) {
       $('#stage').load(
         slide(name).markup(),
         function(data) {
@@ -82,7 +82,21 @@
         }
       );
     }
+    
+    function slide(name)  { return 'slides/' + name }
 
+    function loadConfig(callback) {
+      $.getJSON('config.json', function(config) {
+        $.shining.config = config;
+        $.shining.slides.add(config.slides);
+        callback.call();
+        if (config.transitions) {
+          $('#stage').addClass('transparent fades-in');
+        }
+      });
+    }
+
+    // boots!
     init();
   }
 
@@ -96,4 +110,4 @@
 
   // boots!
   $.shining();
-})(jQuery);s
+})(jQuery);
