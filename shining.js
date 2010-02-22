@@ -61,17 +61,21 @@
       });
       loadConfig(function() { getSlide($.shining.slides.current) });
     }
-    
+
     function getSlide(name) {
       if (!name) return false;
       if ($.shining.config.transitions) {
-        $('#stage').remove('transparent');
-        setTimeout(function() { loadSlide(name) }, 200);
+        $('#stage').removeClass('fades-in');
+        setTimeout(
+          function() {
+            loadSlide(name);
+            setTimeout(function() { $('#stage').addClass('fades-in') }, 200);
+          }, 200);
       } else {
         loadSlide(name);
       }
     }
-    
+
     // private
     function loadSlide(name) {
       $('#stage').load(
@@ -82,7 +86,7 @@
         }
       );
     }
-    
+
     function slide(name)  { return 'slides/' + name }
 
     function loadConfig(callback) {
