@@ -15,13 +15,22 @@ describe 'Shining' do
     @page.execute_js("$('#stage').is(':visible')").should == true
   end
   
+  it "has navigation controls" do
+    @page.execute_js("$('#controls').length").should == 1
+  end
+  
   describe ".slides" do
     it ".current should return the first slide by default" do
       @page.execute_js("$.shining.slides.current").should == 'first'
     end
     
-    it "sets a slide via .current= returning the slide name" do
+    it ".length returns 3 for when there's 3 slides" do
+      @page.execute_js("$.shining.slides.length").should == 3
+    end
+    
+    it ".current= sets the current slide, returning it's name" do
       @page.execute_js("$.shining.slides.current = 'second'").should == 'second'
+      @page.execute_js("$.shining.slides._current").should == 1
     end    
     
     it ".current returns undefined if set to an unexisting slide" do

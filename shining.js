@@ -1,5 +1,7 @@
 (function($) {
   $.fn.ondistance = function(specified, close, far) {
+    // interim fix for env.js not working with offset()
+    if (typeof Envjs != 'undefined') { return false };
     var elt = this.get(0),
       last,
       offset = $(elt).offset(),
@@ -25,7 +27,7 @@
     $.shining.slides = {
       get length()      { return this._slides.length },
       get current()     { return (typeof this._current == 'undefined' ? this._slides[0] : this._slides[this._current]) },
-      set current(_new) { return this._current = this._slides.indexOf(_new) },
+      set current(_new) { this._current = this._slides.indexOf(_new); return this.current },
       get all()         { return this._slides },
       get first()       { return this._slides[0] },
       get last()        { return this._slides[ this._slides.length - 1 ] },
@@ -70,10 +72,10 @@
           function() {
             loadSlide(name);
             setTimeout(
-              function() { 
+              function() {
                 $('#stage').addClass('fades-in');
                 runSlideScript($.shining.currentScript);
-              }, 
+              },
             200);
           }, 200);
       } else {
@@ -82,38 +84,42 @@
     }
 
     // private
+    function slide(name) {
+      return 'slides/' + name;
+    }
+    
     function loadSlide(name) {
       $('#stage').load(
         slide(name).markup(),
         function(data) {
           $.shining.slides.current = name;
           if (data) {
-            $.get(slide(name).script(), function(script) { 
+            $.get(slide(name).script(), function(script) {
               if ($.shining.config.transitions) {
                 $.shining.currentScript = script;
               } else {
                 runSlideScript(script);
               }
-            }); 
+            });
           }
         }
       );
     }
-    
-    function runSlideScript(script) { with($.shining.context) { eval(script) } };
-
-    function slide(name)  { return 'slides/' + name }
 
     function loadConfig(callback) {
       $.getJSON('config.json', function(config) {
         $.shining.config = config;
         $.shining.slides.add(config.slides);
-        callback.call();
         if (config.transitions) {
           $('#stage').addClass('transparent fades-in');
         }
+        callback.call();
       });
     }
+
+    function runSlideScript(script) {
+      with($.shining.context) { eval(script) };
+    };
 
     // boots!
     init();
