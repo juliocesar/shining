@@ -59,7 +59,6 @@
         $('#controls #previous'). click(function() { $.shining.previousSlide() });
         $('#controls #next').     click(function() { $.shining.nextSlide() });
         $('#controls #last').     click(function() { $.shining.lastSlide() });
-        $(document).              click(function() { $.shining.nextSlide() });
       });
       loadConfig(function() { getSlide($.shining.slides.current) });
     }
