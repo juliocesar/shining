@@ -2,9 +2,11 @@
 
 require 'rubygems'
 require 'fileutils'
+require 'tilt'
 
 ROOT    = File.join(File.dirname(__FILE__), '..')
-ACTIONS = {:new_on! => ['build'], :new_slide! => ['slide']}
+ACTIONS = {:new_on! => ['build'], :new_slide! => ['slide'], :compile_templates! => ['compile']}
+TEMPLATES = %w(haml erb)
 
 class String; def /(s) File.join(self, s) end end
 
@@ -50,6 +52,21 @@ def new_slide!(name)
   bail!("This isn't a Shining preso!") unless shining?
   doing("Creating #{Dir.pwd/'slides'/name}.html")  { FileUtils.touch Dir.pwd/'slides'/name + '.html' }
   doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }  
+end
+
+def compile_templates!
+  bail!("This isn't a Shining preso!") unless shining?
+  Dir[ROOT/'slides'/'*'].reject { |f| f =~ /html|js$/ }.each do |template|
+    target = File.basename(template).sub(File.extname(template), '.html')
+    File.open(ROOT/'slides'/target, 'w') do |file|
+      begin
+        file.write Tilt.new(template).render
+        puts "Compiled: #{File.basename(template)} -> #{target}"
+      rescue RuntimeError
+        STDERR.puts "Tilt could not compile #{File.basename(template)}. Skipping."
+      end
+    end
+  end
 end
 
 def shining?

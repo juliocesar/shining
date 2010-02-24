@@ -1,5 +1,7 @@
 source      :gemcutter
 
+gem 'tilt', '0.6'
+
 group :test do
   gem 'stackdeck',  '0.2.0'
   gem 'johnson',    '2.0.0.pre1'

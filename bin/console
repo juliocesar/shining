@@ -2,4 +2,5 @@
 require File.join(File.dirname(__FILE__), *%w(.. .bundle environment))
 require 'harmony'
 require 'irb'
+require 'tilt'
 IRB.start
