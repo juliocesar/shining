@@ -1,14 +1,9 @@
-require File.join(File.dirname(__FILE__), *%w(.. .bundle environment))
-Bundler.require(:default, :test)
-
-__ROOT__ = File.expand_path File.join(File.dirname(__FILE__), '..')
-
-require 'spec'
+require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe 'Shining' do  
   before do
-    Dir.chdir File.join(__ROOT__, *%w(spec sample))
-    @page = Harmony::Page.fetch("file:////#{__ROOT__}/spec/sample/home.html")
+    Dir.chdir File.join(ROOT, *%w(spec sample))
+    @page = Harmony::Page.fetch("file:////#{ROOT}/spec/sample/home.html")
   end
   
   it "has a stage" do
