@@ -1,6 +1,7 @@
 source      :gemcutter
 
 gem 'tilt', '0.6'
+gem 'haml', '2.2.20'
 
 group :test do
   gem 'stackdeck',  '0.2.0'
