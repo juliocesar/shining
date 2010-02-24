@@ -1,7 +1,5 @@
 (function($) {
   $.fn.ondistance = function(specified, close, far) {
-    // interim fix for env.js not working with offset()
-    if (typeof Envjs != 'undefined') { return false };
     var elt = this.get(0),
       last,
       offset = $(elt).offset(),

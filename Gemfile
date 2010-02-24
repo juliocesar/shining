@@ -4,7 +4,8 @@ gem 'tilt', '0.6'
 
 group :test do
   gem 'stackdeck',  '0.2.0'
-  gem 'johnson',    '2.0.0.pre1'
+  gem 'johnson',    '2.0.0.pre2'
   gem 'rspec',      '1.3.0'
-  gem 'harmony'  
+  gem 'envjs',      '0.1.4'
+  gem 'juliocesar-harmony', '0.5.2'
 end
