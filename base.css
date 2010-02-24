@@ -22,7 +22,7 @@ body  {
   max-width: 70%;
   margin: 0 auto;
   top: 30%;
-  text-align: left;
+  text-align: center;
 }
 
 .no-text-shadow { text-shadow: none }
@@ -35,5 +35,7 @@ h2    { font-size: 3.2em }
 h3    { font-size: 3em }
 p, li { font-size: 1.4em }
 
-h1, h2, h3, p { text-align: center; text-rendering: optimizeLegibility }
-a             { cursor: pointer }
+ul    { display: inline-block }
+
+#stage > * { text-rendering: optimizeLegibility }
+a          { cursor: pointer }
