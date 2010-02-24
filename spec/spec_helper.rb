@@ -1,8 +1,6 @@
 require File.join(File.dirname(__FILE__), *%w(.. .bundle environment))
 Bundler.require(:default, :test)
 ROOT = File.expand_path File.join(File.dirname(__FILE__), '..')
-require 'harmony'
-require 'spec'
 require 'tmpdir'
 require 'fileutils'
 
