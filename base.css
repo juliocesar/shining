@@ -37,6 +37,8 @@ ul    { display: inline-block }
 #stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }
 
+@media all and (min-width: 480px)   { #stage  { font-size: 80% } }
 @media all and (min-width: 640px)   { #stage  { font-size: 100% } }
 @media all and (min-width: 800px)   { #stage  { font-size: 130% } }
 @media all and (min-width: 1024px)  { #stage  { font-size: 160% } }
+@media all and (min-width: 1280px)  { #stage  { font-size: 180% } }
