@@ -19,6 +19,7 @@ body  {
   display: inline-block;
   padding: 40px 20px;
   max-width: 90%;
+  text-align: left;
 }
 
 .no-text-shadow { text-shadow: none }
@@ -31,8 +32,9 @@ h1    { font-size: 3.6em }
 h2    { font-size: 3.2em }
 h3    { font-size: 3em }
 p, li { font-size: 1.4em }
+p     { margin: 0.5em 0 }
 
-ul    { display: inline-block }
+ul    { display: inline-block; margin-left: 15px; }
 
 #stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }
