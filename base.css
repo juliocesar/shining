@@ -18,17 +18,14 @@ body  {
   position: relative;
   display: inline-block;
   padding: 40px 20px;
-  min-width: 50%;
-  max-width: 70%;
-  margin: 0 auto;
-  top: 30%;
-  text-align: center;
+  max-width: 90%;
 }
 
 .no-text-shadow { text-shadow: none }
 .no-drop-shadow {}
 .hidden         { display: none }
 .visible        { opacity: 1; display: static }
+.centered       { text-align: center; margin: 0 auto }
 
 h1    { font-size: 3.6em }
 h2    { font-size: 3.2em }
@@ -39,3 +36,7 @@ ul    { display: inline-block }
 
 #stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }
+
+@media all and (min-width: 640px)   { #stage  { font-size: 100% } }
+@media all and (min-width: 800px)   { #stage  { font-size: 130% } }
+@media all and (min-width: 1024px)  { #stage  { font-size: 160% } }
