@@ -34,7 +34,7 @@ h3    { font-size: 3em }
 p, li { font-size: 1.4em }
 p     { margin: 0.5em 0 }
 
-ul    { display: inline-block; margin-left: 15px; }
+ul    { display: inline-block; margin-left: 2em }
 
 #stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }

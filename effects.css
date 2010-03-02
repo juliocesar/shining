@@ -1,8 +1,16 @@
 .transparent    { opacity: 0; -webkit-transition: opacity 200ms linear }
 .fades-in       { opacity: 1; -webkit-transition: opacity 200ms linear  }
 
-.fades-in-zoom   {
+.fades-in-zoom {
   opacity: 1;
+  -webkit-animation-name: fades-in-zoom;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.fades-out {
+  opacity: 0;
   -webkit-animation-name: fades-in-zoom;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;

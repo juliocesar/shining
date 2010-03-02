@@ -1,34 +1,4 @@
 (function($) {
-  $.fn.ondistance = function(specified, close, far) {
-    var elt = this.get(0),
-      last,
-      offset = $(elt).offset(),
-      center = { x: offset.left + ($(elt).width() / 2), y: offset.top + ($(elt).height() / 2) };
-    $(document).mousemove(function(e) {
-      // Throttle
-      var current = new Date().getTime();
-      if (current - last < 500) return;
-      last = current;
-      var distance = parseInt(Math.sqrt(Math.pow(e.pageX-center.x, 2) + Math.pow(e.pageY-center.y, 2)));
-      if (specified >= distance) {
-        if ($(elt).data('mouseclose') == true) return false;
-        $(elt).data('mouseclose', true);
-        close(elt);
-      } else {
-        if ($(elt).data('mouseclose') == false) return false;
-        $(elt).data('mouseclose', false);
-        far(elt);
-      }
-    })
-  }
-  
-  $.fn.centralize = function() {
-    var self = this.get(0);
-      windowHeight = document.documentElement.clientHeight, 
-      elementHeight = (self.offsetHeight + $(self).padding().top + $(self).padding().bottom);
-    $(self).css('position', 'relative').css('top', (windowHeight / 2) - (elementHeight / 2) + 'px');      
-  }
-  
   $.shining = function() {
     $.shining.slides = {
       get length()      { return this._slides.length },
@@ -81,7 +51,7 @@
             setTimeout(
               function() {
                 $('#stage').addClass('fades-in');
-                runSlideScript($.shining.currentScript);
+                $.shining.scripts.run($.shining.currentScript);
               },
             200);
           }, 200);
@@ -106,7 +76,7 @@
               if ($.shining.config.transitions) {
                 $.shining.currentScript = script;
               } else {
-                runSlideScript(script);
+                $.shining.scripts.run(script)
               }
             });
           }
@@ -124,28 +94,50 @@
         callback.call();
       });
     }
-
-    function runSlideScript(script) {
-      with($.shining.context) { eval(script) };
-    };
-
-    // boots!
+    
+    $.shining.scripts = {
+      LINE: /^(\d[.\d]*),[\s]*(.*)/,
+      parsed: [],
+      // runParsed:      function(script) { with($.shining.scripts) { eval(script) } },
+      nextSlide:      function() { $.shining.nextSlide() },
+      previousSlide:  function() { $.shining.previousSlide() },
+      at:             function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) },
+      parse:          function(script) {
+        var lines = script.split("\n"), tokens, parsed = [];
+        for (var i = 0; lines.length > i; i++) {
+          if ($.shining.scripts.LINE.test(lines[i])) {
+            var tokens = lines[i].match($.shining.scripts.LINE);
+            var time = tokens[1], code = tokens[2];
+            parsed.push(time);
+            if (code.length) parsed.push(code);
+          } else {
+            if (isNaN(parsed[parsed.length - 1])) {
+              parsed[parsed.length - 1] += ("; " + lines[i]);
+            } else {
+              parsed.push(lines[i]);
+            }
+          }
+        }        
+        return parsed;
+      },
+      run:          function(script) {
+        var parsed = $.shining.scripts.parse(script), all = [];
+        window.parsed = parsed;
+        for (var i = 0; parsed.length > i; i += 2) {
+          all.push(["at(", parsed[i], ", function() { ", parsed[i+1], " })"].join(''));
+        }
+        with($.shining.scripts) { eval(all.join(';')) }; 
+      }
+    }
+    
     init();
   }
-
-  // gives slide scripts a context for execution
-  $.shining.context = $.noop;
-  with ($.shining.context) {
-    this.at            = function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) };
-    this.nextSlide     = function() { $.shining.nextSlide() };
-    this.previousSlide = function() { $.shining.previousSlide() };
-  }
-
   // boots!
   $.shining();
   
 })(jQuery);
 
+// Dependencies!!
 
 /*
  * JSizes - JQuery plugin v0.33
@@ -155,3 +147,16 @@
  * All rights reserved.
  */
 (function(b){var a=function(c){return parseInt(c,10)||0};b.each(["min","max"],function(d,c){b.fn[c+"Size"]=function(g){var f,e;if(g){if(g.width!==undefined){this.css(c+"-width",g.width)}if(g.height!==undefined){this.css(c+"-height",g.height)}return this}else{f=this.css(c+"-width");e=this.css(c+"-height");return{width:(c==="max"&&(f===undefined||f==="none"||a(f)===-1)&&Number.MAX_VALUE)||a(f),height:(c==="max"&&(e===undefined||e==="none"||a(e)===-1)&&Number.MAX_VALUE)||a(e)}}}});b.fn.isVisible=function(){return this.is(":visible")};b.each(["border","margin","padding"],function(d,c){b.fn[c]=function(e){if(e){if(e.top!==undefined){this.css(c+"-top"+(c==="border"?"-width":""),e.top)}if(e.bottom!==undefined){this.css(c+"-bottom"+(c==="border"?"-width":""),e.bottom)}if(e.left!==undefined){this.css(c+"-left"+(c==="border"?"-width":""),e.left)}if(e.right!==undefined){this.css(c+"-right"+(c==="border"?"-width":""),e.right)}return this}else{return{top:a(this.css(c+"-top"+(c==="border"?"-width":""))),bottom:a(this.css(c+"-bottom"+(c==="border"?"-width":""))),left:a(this.css(c+"-left"+(c==="border"?"-width":""))),right:a(this.css(c+"-right"+(c==="border"?"-width":"")))}}}})})(jQuery);
+
+// http://github.com/juliocesar/jquery-ondistance
+(function($) {$.fn.ondistance=function(specified,close,far){var elt=this.get(0),last,offset=$(elt).offset(),center={x:offset.left+($(elt).width()/2),y:offset.top+($(elt).height()/2)};$(document).mousemove(function(e){var current=new Date().getTime();if(current-last<500){return}last=current;var distance=parseInt(Math.sqrt(Math.pow(e.pageX-center.x,2)+Math.pow(e.pageY-center.y,2)));if(specified>=distance){if($(elt).data("mouseclose")==true){return false}$(elt).data("mouseclose",true);close(elt)}else{if($(elt).data("mouseclose")==false){return false}$(elt).data("mouseclose",false);far(elt)}})};})(jQuery);
+
+// 
+(function($) {
+  $.fn.centralize = function() {
+    var self = this.get(0);
+      windowHeight = document.documentElement.clientHeight, 
+      elementHeight = (self.offsetHeight + $(self).padding().top + $(self).padding().bottom);
+    $(self).css('position', 'relative').css('top', (windowHeight / 2) - (elementHeight / 2) + 'px');      
+  }  
+})(jQuery);

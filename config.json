@@ -1,4 +1,4 @@
 {
-  "slides":       ["welcome", "why", "bother", "target"],
+  "slides":       ["welcome", "why", "bother", "target", "features", "effects"],
   "transitions":  true
 }
