@@ -16,12 +16,13 @@
 
     String.prototype.markup = function() { return this + '.html' };
     String.prototype.script = function() { return this + '.js' };
+    String.prototype.style =  function() { return this + '.css' };    
 
     $.extend($.shining, {
-      firstSlide:     function() { return getSlide($.shining.slides.first) },
-      lastSlide:      function() { return getSlide($.shining.slides.last ) },
-      nextSlide:      function() { return getSlide($.shining.slides.next) },
-      previousSlide:  function() { return getSlide($.shining.slides.previous) }
+      firstSlide:     function() { getSlide($.shining.slides.first) },
+      lastSlide:      function() { getSlide($.shining.slides.last ) },
+      nextSlide:      function() { getSlide($.shining.slides.next) },
+      previousSlide:  function() { getSlide($.shining.slides.previous) }
     });
 
     function init()         {
@@ -70,20 +71,30 @@
         slide(name).markup(),
         function(data) {
           $.shining.slides.current = name;
+          $('link.slide').remove(); // remove now previous slide styles
           $('#stage').centralize();
           if (data) {
-            $.get(slide(name).script(), function(script) {
-              if ($.shining.config.transitions) {
-                $.shining.currentScript = script;
-              } else {
-                $.shining.scripts.run(script)
-              }
-            });
+            loadSlideScript(name);
+            loadSlideStyle(name);
           }
         }
       );
     }
-
+    
+    function loadSlideScript(name) {
+      $.get(slide(name).script(), function(script) {
+        if ($.shining.config.transitions) {
+          $.shining.currentScript = script;
+        } else {
+          $.shining.scripts.run(script)
+        }      
+      })
+    }
+    
+    function loadSlideStyle(name) {
+      $('head').append('<link rel="stylesheet" type="text/css" href="' + slide(name).style() + '" media="all" class="slide"/>')
+    }
+    
     function loadConfig(callback) {
       $.getJSON('config.json', function(config) {
         $.shining.config = config;
@@ -98,10 +109,9 @@
     $.shining.scripts = {
       LINE: /^(\d[.\d]*),[\s]*(.*)/,
       parsed: [],
-      // runParsed:      function(script) { with($.shining.scripts) { eval(script) } },
       nextSlide:      function() { $.shining.nextSlide() },
       previousSlide:  function() { $.shining.previousSlide() },
-      at:             function(seconds, method) { setTimeout(method, parseInt(seconds) * 1000) },
+      at:             function(seconds, method) { setTimeout(method, parseFloat(seconds) * 1000) },
       parse:          function(script) {
         var lines = script.split("\n"), tokens, parsed = [];
         for (var i = 0; lines.length > i; i++) {
@@ -122,7 +132,6 @@
       },
       run:          function(script) {
         var parsed = $.shining.scripts.parse(script), all = [];
-        window.parsed = parsed;
         for (var i = 0; parsed.length > i; i += 2) {
           all.push(["at(", parsed[i], ", function() { ", parsed[i+1], " })"].join(''));
         }

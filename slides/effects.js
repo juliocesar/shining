@@ -1,3 +1,4 @@
-0.5,  $('h2:first').addClass('fades-in-zoom')
-2,    $('h2:first').removeClass('fades-in-zoom')
-2.5,  $('h2:eq(1)').removeClass('hidden transparent').addClass('y-spin')
+1,    $('h2:first').addClass('fades-in-zoom-quick')
+2,    $('h2:first').addClass('booms-out')
+2.2,  $('h2:first').hide()
+3,    $('h2:eq(1)').removeClass('hidden').addClass('fades-in-zoom-quick')

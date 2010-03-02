@@ -1,12 +1,26 @@
 .transparent    { opacity: 0; -webkit-transition: opacity 200ms linear }
 .fades-in       { opacity: 1; -webkit-transition: opacity 200ms linear  }
 
-.fades-in-zoom {
+.fades-in-zoom-slow {
   opacity: 1;
   -webkit-animation-name: fades-in-zoom;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-out;
+}
+
+.fades-in-zoom-quick {
+  opacity: 1;
+  -webkit-animation-name: fades-in-zoom;
+  -webkit-animation-duration: 500ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;  
+}
+
+.booms-out {
+  opacity: 0;
+  -webkit-transform: scale(1.3);
+  -webkit-transition: all 300ms ease-out;
 }
 
 .fades-out {
@@ -73,7 +87,7 @@
 
 @-webkit-keyframes dances {
   0%      { -webkit-transform: skew(0deg) scale(1) }
-  12.5%   {  -webkit-transform: skew(20deg) scale(1.2) }
+  12.5%   { -webkit-transform: skew(20deg) scale(1.2) }
   25%     { -webkit-transform: skew(0deg) scale(1) }
   37.5%   { -webkit-transform: skew(20deg) scale(1.2) }
   50%     { -webkit-transform: skew(0deg) scale(1) }
