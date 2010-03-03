@@ -68,19 +68,14 @@
   -webkit-animation-timing-function: ease-in-out;
 }
 
-.y-spin {
-  -webkit-animation-name: y-spin;
+.y-spin, .x-spin {
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-out;
 }
 
-.x-spin {
-  -webkit-animation-name: x-spin;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-out;
-}
+.y-spin { -webkit-animation-name: y-spin }
+.x-spin { -webkit-animation-name: x-spin }
 
 @-webkit-keyframes fades-in-zoom {
   0%    { opacity: 0; -webkit-transform: scale(0.8) }
