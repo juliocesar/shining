@@ -167,5 +167,5 @@
       windowHeight = document.documentElement.clientHeight, 
       elementHeight = (self.offsetHeight + $(self).padding().top + $(self).padding().bottom);
     $(self).css('position', 'relative').css('top', (windowHeight / 2) - (elementHeight / 2) + 'px');      
-  }  
+  };
 })(jQuery);
