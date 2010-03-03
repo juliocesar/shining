@@ -24,11 +24,19 @@
   -webkit-animation-timing-function: linear;
 }
 
-.speeds-in-left {
-  -webkit-animation-name: speeds-in-left;
+.speeds-in-left,
+.speeds-in-right {
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: linear;  
+}
+
+.speeds-in-left {
+  -webkit-animation-name: speeds-in-left;
+}
+
+.speeds-in-right {
+  -webkit-animation-name: speeds-in-right;
 }
 
 .booms-out {
@@ -123,4 +131,11 @@
   10%   { opacity: 1; -webkit-transform: skew(0deg); margin-left: -2em }
   90%   { opacity: 1; -webkit-transform: skew(0deg); margin-left: 0em }
   100%  { opacity: 0; -webkit-transform: skew(-40deg); margin-right: -4em }
+}
+
+@-webkit-keyframes speeds-in-right {
+  0%    { opacity: 0; -webkit-transform: skew(-40deg); margin-right: -4em }
+  10%   { opacity: 1; -webkit-transform: skew(0deg); margin-right: -2em }
+  90%   { opacity: 1; -webkit-transform: skew(0deg); margin-right: 0em }
+  100%  { opacity: 0; -webkit-transform: skew(40deg); margin-left: -4em }
 }

@@ -1,1 +1,1 @@
-1,    $('h2:first').addClass('speeds-in-left')
+1,    $('h2:first').addClass('speeds-in-right')
