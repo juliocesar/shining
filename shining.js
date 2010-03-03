@@ -72,6 +72,7 @@
         function(data) {
           $.shining.slides.current = name;
           $('link.slide').remove(); // remove now previous slide styles
+          if (SyntaxHighlighter) SyntaxHighlighter.highlight();
           $('#stage').centralize();
           if (data) {
             loadSlideScript(name);

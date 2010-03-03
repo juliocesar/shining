@@ -27,6 +27,7 @@
     - and... effects!
 # Effects
   Many... different... kinds... of... effects.
+# Easier
   In general it's easier (IMO) to make it look better/smoother than something done in
   MS Powerpoint. I never used Keynote in my life so I can't opine on it.
   How easier? All you have to do is add CSS classes onto elements.
