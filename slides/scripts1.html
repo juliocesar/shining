@@ -1,0 +1,24 @@
+<h1 class="centered">Slide scripts</h1>
+<p>
+  Each slide can have a script along with it. "script" as in it dictates what will
+  happen and when as that slide gets shown. Like for instance:
+  <script type="syntaxhighlighter" class="brush: js">
+  <![CDATA[
+    0.5,  $('h1:first').addClass('shines')
+    1,    $('h2').removeClass('hidden').addClass('appears-dramatically')
+    2.5,
+          $('p:first').addClass('x-spin')
+          window.FOO = "avoid this sort of thing"
+          console.log('all done!')
+  ]]>
+  </script>
+</p>
+<p>
+  It features a tiny scheduling DSL so to speak. They're actually just shortcuts to
+  a helper method available in <em>$.shining.scripts</em>. The above is pure Javascript,
+  so go nuts!
+</p>
+<p>
+  It still needs more abstraction. Ideally I don't want people to have to know the ins
+  and outs of Webkit animations to be able to use it  :)
+</p>

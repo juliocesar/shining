@@ -1,5 +1,4 @@
-require File.join(File.dirname(__FILE__), *%w(.bundle environment))
-
+require File.join(File.dirname(__FILE__), 'spec', 'spec_helper')
 require 'spec/rake/spectask'
 
 Spec::Rake::SpecTask.new do |t|
