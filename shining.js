@@ -74,6 +74,7 @@
           $('link.slide').remove(); // remove now previous slide styles
           if (SyntaxHighlighter) SyntaxHighlighter.highlight();
           $('#stage').centralize();
+          $.shining.scripts.reap();
           if (data) {
             loadSlideScript(name);
             loadSlideStyle(name);
@@ -109,10 +110,12 @@
     
     $.shining.scripts = {
       LINE: /^(\d[.\d]*),[\s]*(.*)/,
-      parsed: [],
+      parsed: [], processes: [],
       nextSlide:      function() { $.shining.nextSlide() },
       previousSlide:  function() { $.shining.previousSlide() },
-      at:             function(seconds, method) { setTimeout(method, parseFloat(seconds) * 1000) },
+      at:             function(seconds, method) { 
+        $.shining.scripts.processes.push(setTimeout(method, parseFloat(seconds) * 1000))
+      },
       parse:          function(script) {
         var lines = script.split("\n"), tokens, parsed = [];
         for (var i = 0; lines.length > i; i++) {
@@ -137,6 +140,10 @@
           all.push(["at(", parsed[i], ", function() { ", parsed[i+1], " })"].join(''));
         }
         with($.shining.scripts) { eval(all.join(';')) }; 
+      },
+      reap: function() {
+        $($.shining.scripts.processes).map(function() { clearTimeout(this) });
+        return $.shining.scripts.processes = [];
       }
     }
     
