@@ -1,8 +1,0 @@
-{
-  "slides":       [
-    "welcome", "why", "bother", "target", "features", 
-    "effects", "easier", "themes", "madeof", "scripts1",
-    "scripts2", "sum", "thanks"
-  ],
-  "transitions":  true
-}

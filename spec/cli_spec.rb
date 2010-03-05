@@ -34,15 +34,25 @@ describe 'shine' do
     File.directory?(PRESO).should == true
   end
   
-  it "creates a new slide and slide script named 'foo' on 'shine slide foo'" do
-    new_slide 'foo'
-    File.exists?(PRESO/'slides'/'foo.html').should be_true
-    File.exists?(PRESO/'slides'/'foo.js').should be_true
+  describe 'the slide option' do
+    it "creates a new slide and slide script named 'foo' on 'shine slide foo'" do
+      new_slide 'foo'
+      File.exists?(PRESO/'slides'/'foo.html').should be_true
+      File.exists?(PRESO/'slides'/'foo.js').should be_true
+    end
+    
+    it "updates the presentation's config file with the slide added" do
+      new_slide 'test'
+      config = JSON.parse(File.read(PRESO/'config.json'))
+      config['slides'].should include('test')
+    end
+    
+    it "won't let you create a slide with the same name of an already existing one"
   end
   
   it "compiles a Haml template if there is one in #{'PRESO_ROOT'/'slides'/'test.haml'}" do
     make_haml_template! 'test'
     compile_templates    
     File.read(PRESO/'slides'/'test.html').should == "<p>LOOK MA</p>\n"
-  end
+  end  
 end

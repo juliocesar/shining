@@ -1,1 +1,4 @@
-["welcome"]
+{
+  "slides":       ["welcome"],
+  "transitions":  true
+}

@@ -3,18 +3,20 @@
 require File.join(File.dirname(__FILE__), *%w(.. lib shining))
 require 'fileutils'
 require 'tilt'
+require 'erb'
+require 'json/pure'
 
 ACTIONS   = {:new_on! => ['build'], :new_slide! => ['slide'], :compile_templates! => ['compile']}
 TEMPLATES = %w(haml erb)
 
 class String; def /(s) File.join(self, s) end end
 
-def doing(what, &block)
+def doing what, &block
   puts what
   block.call if block_given?
 end
 
-def bail!(reason)
+def bail! reason
   STDERR.puts(reason) and exit(-2)
 end
 
@@ -39,17 +41,25 @@ Shine - Generates a new Shining presentation
   exit -1
 end
 
-def new_on!(dir)
+def new_on! dir
   target = File.expand_path(dir)
-  doing("Creating #{target/'themes'}")      { FileUtils.mkdir_p target/'themes' }
-  doing("Creating #{target/'slides'}")      { FileUtils.mkdir   target/'slides' }
-  doing("Creating #{target/'config.json'}") { FileUtils.cp Dir.pwd/'templates'/'config.json', target/'config.json' }
-  doing("Creating #{target/'config'}")      { FileUtils.cp_r Dir.pwd/'templates'/'pages', target/'pages' }
+  doing("Creating #{target}")      { FileUtils.mkdir_p target }
+  doing("Creating #{target/'config.json'}") { FileUtils.cp SHINING_ROOT/'templates'/'config.json', target/'config.json' }
+  doing("Creating #{target/'index.html'}") {
+    contents = File.read(SHINING_ROOT/'templates'/'index.html')
+    File.open(target/'index.html', 'w') do |file| file.write ERB.new(contents).result end
+  }
+  doing("Creating #{target/'slides'}")      { FileUtils.cp_r SHINING_ROOT/'templates'/'slides', target/'slides' }
 end
 
-def new_slide!(name)
+def new_slide! name
   bail!("This isn't a Shining preso!") unless shining?
-  doing("Creating #{Dir.pwd/'slides'/name}.html")  { FileUtils.touch Dir.pwd/'slides'/name + '.html' }
+  config = JSON.parse File.read(Dir.pwd/'config.json')
+  config['slides'] << name
+  File.open(Dir.pwd/'config.json', 'w') do |file| file.write JSON.pretty_generate(config) end
+  doing("Creating #{Dir.pwd/'slides'/name}.html")  {
+    File.open(Dir.pwd/'slides'/"#{name}.html", 'w') do |file| file.write "<h1 class='centered'>#{name}</h1>" end
+  }
   doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }
 end
 
