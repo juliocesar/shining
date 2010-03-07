@@ -8,6 +8,10 @@ describe 'shine' do
     system "#{SHINE} #{PRESO}"
   end
   
+  def vendorize
+    system "cd #{PRESO} && #{SHINE} vendor"
+  end
+  
   def new_slide(name)
     system "cd #{PRESO} && #{SHINE} slide #{name}"
   end
@@ -50,7 +54,14 @@ describe 'shine' do
     it "won't let you create a slide with the same name of an already existing one"
   end
   
-  it "compiles a Haml template if there is one in #{'PRESO_ROOT'/'slides'/'test.haml'}" do
+  it "vendorizes Shining to #{PRESO/'vendor'} with the 'vendor' option" do
+    vendorize
+    %w(lib themes css).each do |required|
+      File.exists?(PRESO/'vendor'/required).should be_true
+    end
+  end
+  
+  it "compiles a Haml template if there is one in #{'PRESO_ROOT'/'slides'/'test.haml'} with the 'compile' option" do
     make_haml_template! 'test'
     compile_templates    
     File.read(PRESO/'slides'/'test.html').should == "<p>LOOK MA</p>\n"

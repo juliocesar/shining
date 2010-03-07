@@ -6,7 +6,12 @@ require 'tilt'
 require 'erb'
 require 'json/pure'
 
-ACTIONS   = {:new_on! => ['build'], :new_slide! => ['slide'], :compile_templates! => ['compile']}
+ACTIONS   = {
+  :new_on!            => ['build'], 
+  :new_slide!         => ['slide'], 
+  :compile_templates! => ['compile'],
+  :vendorize          => ['vendor', 'vendorize']
+}
 TEMPLATES = %w(haml erb)
 
 class String; def /(s) File.join(self, s) end end
@@ -18,6 +23,12 @@ end
 
 def bail! reason
   STDERR.puts(reason) and exit(-2)
+end
+
+def vendorized?
+  bail!("This isn't a Shining preso!") unless shining?
+  File.exists? Dir.pwd/'vendor'/'lib'/'jquery.shining.js' and
+    File.exists? Dir.pwd/'vendor'/'themes'
 end
 
 def figure_what_to_do!
@@ -58,9 +69,21 @@ def new_slide! name
   config['slides'] << name
   File.open(Dir.pwd/'config.json', 'w') do |file| file.write JSON.pretty_generate(config) end
   doing("Creating #{Dir.pwd/'slides'/name}.html")  {
-    File.open(Dir.pwd/'slides'/"#{name}.html", 'w') do |file| file.write "<h1 class='centered'>#{name}</h1>" end
+    File.open(Dir.pwd/'slides'/"#{name}.html", 'w') do |file| file.write "<h1 class='centered'>#{name}</h1><p class='centered>♫ ♫ ♫</p>" end
   }
   doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }
+end
+
+def vendorize
+  bail! 'This preso seems vendorized already.' if vendorized?
+  FileUtils.mkdir Dir.pwd/'vendor'
+  %w(lib css images themes).each do |required|
+    FileUtils.cp_r SHINING_ROOT/required, Dir.pwd/'vendor/'
+  end
+  index = File.read SHINING_ROOT/'templates'/'index.html'
+  Object.send(:remove_const, :SHINING_ROOT) and Object.const_set(:SHINING_ROOT, File.expand_path(Dir.pwd/'vendor'))
+  File.open(Dir.pwd/'index.html', 'w') do |file| file.write ERB.new(index).result end
+  puts "Done!"
 end
 
 def compile_templates!
