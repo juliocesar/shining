@@ -1,9 +1,0 @@
-body          { background-color: rgb(101, 101, 101) }
-
-
-h1, h2, h3, p { 
-  color: rgb(238, 238, 238);
-  text-shadow: rgb(0, 0, 0) 2px 2px 4px;  
-}
-
-a { color: rgb(255, 255, 255) }

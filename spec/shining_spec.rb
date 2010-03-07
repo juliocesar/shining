@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 describe 'Shining' do  
   before do
     Dir.chdir File.join(ROOT, *%w(spec sample))
-    @page = Harmony::Page.fetch("file:////#{ROOT}/spec/sample/home.html")
+    @page = Harmony::Page.fetch("file:////#{ROOT}/spec/sample/index.html")
   end
   
   it "has a stage" do
