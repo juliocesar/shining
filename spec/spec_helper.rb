@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'tmpdir'
 require File.join(File.dirname(__FILE__), *%w(.. lib shining))
 
 gem 'stackdeck',  '0.2.0';          require 'stackdeck'

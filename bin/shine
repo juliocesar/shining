@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
-require File.join(File.dirname(__FILE__), *%w(.. lib shining))
+require 'rubygems'
 require 'fileutils'
 require 'tilt'
 require 'erb'
+require 'haml'
 require 'json/pure'
 
 ACTIONS   = {
@@ -12,7 +13,8 @@ ACTIONS   = {
   :compile_templates! => ['compile'],
   :vendorize          => ['vendor', 'vendorize']
 }
-TEMPLATES = %w(haml erb)
+TEMPLATES     = %w(haml erb)
+SHINING_ROOT  = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
 class String; def /(s) File.join(self, s) end end
 

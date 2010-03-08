@@ -1,7 +1,5 @@
-require 'rubygems'
-require 'tilt'
-require 'haml'
-require 'tmpdir'
-require 'fileutils'
+$:.unshift File.join(File.dirname(__FILE__))
 
-SHINING_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+require 'ext/string'
+require 'shining/preso'
+require 'shining/generators'
