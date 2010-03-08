@@ -61,8 +61,7 @@ Quickly outline of things I'm going to do with this project:
 
 * More effects, because there's no such thing as visually appealing enough. Some
 fine tuning of the existing ones is in order as well.
-* More themes. For now there's only one. Also, the ability to select a theme
-from the configuration file  :)
+* More themes.
 * Add a CSS parser, so I can build jQuery queues with the effects and order them
 without the end-user needing to make sure things happen when they expect.
 * Better generators. For now the requirements are simple enough so they can stay
