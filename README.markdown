@@ -43,11 +43,24 @@ You can also create slides manually by adding an HTML file to **ROOT/slides**, a
 adding the file name (minus the extension) to **config.json**. Though really, just use 
 the generator.
 
+# Slide templates
+
+Shining supports Haml and ERb templates. For now, you can use it by manually dropping
+a template file or either of those formats in **ROOT/slides**, and then running (from
+inside the presentation's directory)
+
+    $ shine compile
+    
+Say you have a slide template named **ROOT/slides/test.haml**. Running the aforementioned
+command will generate a new **test.html** from it. Note that this will _overwrite_ an
+existing **test.html** slide if one exists.
+
 # Steps to winning
 
 Quickly outline of things I'm going to do with this project:
 
-* More effects, because there's no such thing as visually appealing enough.
+* More effects, because there's no such thing as visually appealing enough. Some
+fine tuning of the existing ones is in order as well.
 * More themes. For now there's only one. Also, the ability to select a theme
 from the configuration file  :)
 * Add a CSS parser, so I can build jQuery queues with the effects and order them
