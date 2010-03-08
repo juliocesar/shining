@@ -63,15 +63,25 @@ def new_on! dir
   doing("Creating #{target/'slides'}")      { FileUtils.cp_r SHINING_ROOT/'templates'/'slides', target/'slides' }
 end
 
-def new_slide! name
+def new_slide! name, format = nil
   bail!("This isn't a Shining preso!") unless shining?
+  file_name = Dir.pwd/'slides'/name + (format ? ".#{format}" : '.html')
+  doing("Creating #{file_name}")  {
+    File.open(file_name, 'w') do |file|
+      case format
+      when 'haml'
+        file.write "%h1.centered #{name}\n%p.centered ♫ ♫ ♫" 
+      when 'erb'
+        file.write "<h1 class='centered'>#{name}</h1><p class='centered>♫ ♫ ♫</p>"
+      else
+        file.write "<h1 class='centered'>#{name}</h1><p class='centered>♫ ♫ ♫</p>" 
+      end
+    end
+  }
+  doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }
   config = JSON.parse File.read(Dir.pwd/'config.json')
   config['slides'] << name
   File.open(Dir.pwd/'config.json', 'w') do |file| file.write JSON.pretty_generate(config) end
-  doing("Creating #{Dir.pwd/'slides'/name}.html")  {
-    File.open(Dir.pwd/'slides'/"#{name}.html", 'w') do |file| file.write "<h1 class='centered'>#{name}</h1><p class='centered>♫ ♫ ♫</p>" end
-  }
-  doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }
 end
 
 def vendorize
@@ -94,7 +104,7 @@ def compile_templates!
       rendered = Tilt.new(template).render
       File.open(Dir.pwd/'slides'/target, 'w') do |file| file.write rendered end
       puts "Compiled: #{File.basename(template)} -> #{target}"
-    rescue RuntimeErroor
+    rescue RuntimeError
       STDERR.puts "Tilt coult not compile #{File.basename template}. Skipping."
     end
   end
