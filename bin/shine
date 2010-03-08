@@ -81,7 +81,8 @@ def vendorize
     FileUtils.cp_r SHINING_ROOT/required, Dir.pwd/'vendor/'
   end
   index = File.read SHINING_ROOT/'templates'/'index.html'
-  Object.send(:remove_const, :SHINING_ROOT) and Object.const_set(:SHINING_ROOT, File.expand_path(Dir.pwd/'vendor'))
+  puts "VENDORING TO: #{'vendor'}"
+  Object.send(:remove_const, :SHINING_ROOT) and Object.const_set(:SHINING_ROOT, 'vendor')
   File.open(Dir.pwd/'index.html', 'w') do |file| file.write ERB.new(index).result end
   puts "Done!"
 end
