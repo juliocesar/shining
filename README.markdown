@@ -2,6 +2,65 @@
 
 A presentation framework to be used with Webkit. Yeah, it's all in-browser.
 
+# Installation
+
+    $ sudo gem install shining
+
+# How to use
+
+Create a new presentation by
+
+    $ shine mypreso
+    
+Where "mypreso" is the directory name you'll use for it. A base presentation has the
+following base structure.
+
+* ROOT
+  * config.json
+  * slides
+  * index.html
+  
+Which leads us to...
+
+# Configuration
+
+Presentation-wide configuration happens through the **config.json** file. The existing
+parameters are what I like to call "self documenting" enough so I'll refrain from
+explaining them for now. The only detail worth nothing is that the slides _have_ to be
+listed in the slides array, or else Shining will ignore their existence.
+
+# Slides
+
+Easy way first. Change the directory to the presentation's directory first. Then
+
+    $ shine slide mynewslide
+    
+Where "mynewslide" is the name of the slide. This will create a slide in
+**ROOT/slides/mynewslide.html**, and a slide script in **ROOT/slides/mynewslide.js**.
+It will also automagically edit the **config.json** file for you, adding the new slide.
+
+You can also create slides manually by adding an HTML file to **ROOT/slides**, and then
+adding the file name (minus the extension) to **config.json**. Though really, just use 
+the generator.
+
+# Steps to winning
+
+Quickly outline of things I'm going to do with this project:
+
+* More effects, because there's no such thing as visually appealing enough.
+* More themes. For now there's only one. Also, the ability to select a theme
+from the configuration file  :)
+* Add a CSS parser, so I can build jQuery queues with the effects and order them
+without the end-user needing to make sure things happen when they expect.
+* Better generators. For now the requirements are simple enough so they can stay
+as a single file, but I'm confident that will change.
+* Better DSL for slide scripts. I know it's awesome already, but there's always
+room for improvement.
+* Macros, or configurable shortcuts for adding things like audio and video
+without having to know how to use the tags.
+* Did I say I wanna add macros, so you'll need to know next to zero HTML in order
+to create *really* awesome presentations?
+
 # License
 
 The MIT License
