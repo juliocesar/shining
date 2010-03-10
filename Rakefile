@@ -15,8 +15,9 @@ begin
     gem.email               = "julio.ody@gmail.com"
     gem.homepage            = "http://github.com/juliocesar/shining"
     gem.authors             = "Julio Cesar Ody"
-    gem.add_dependency      'haml', '>= 2.2.17'
-    gem.add_dependency      'json_pure', '>= 1.1.9'
+    gem.add_dependency      'haml',       '>= 2.2.17'
+    gem.add_dependency      'json_pure',  '>= 1.1.9'
+    gem.add_dependency      'tilt',       '>= 0.6'
     gem.add_development_dependency 'rspec', '1.3.0'
     gem.add_development_dependency 'stackdeck',  '0.2.0'
     gem.add_development_dependency 'johnson',    '2.0.0.pre2'
