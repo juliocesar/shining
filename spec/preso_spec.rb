@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 describe 'Shining::Preso' do
 
   before :all do
-    TMP = Dir.tmpdir/'shining-tmp'
+    TMP = Dir.tmpdir/'shining-tmp' unless defined?(TMP)
     FileUtils.rm_rf   TMP
     FileUtils.mkdir_p TMP
   end
@@ -23,6 +23,17 @@ describe 'Shining::Preso' do
       File.exists?(TMP/'temp'/'index.html')
       File.directory?(TMP/'temp'/'slides')
       File.exists?(TMP/'temp'/'slides'/'welcome.html')).should be_true
+    end
+  end
+  
+  describe "#open" do
+    it "opens an existing presentation" do
+      preso = Shining::Preso.open TMP/'temp'
+      preso.should be_an_instance_of(Shining::Preso)
+    end
+    
+    it "errors out if the directory is not a Shining presentation" do
+      lambda do Shining::preso.open TMP end.should raise_error
     end
   end
 
@@ -65,26 +76,36 @@ describe 'Shining::Preso' do
     end
   end
 
-  describe 'templates' do
+  describe 'slides' do
     before do
       FileUtils.rm_f @preso.path/'slides'/'*.haml'
       FileUtils.rm_f @preso.path/'slides'/'*.markdown'      
     end
 
     it "raises an error if the format is not in the allowed formats list" do
-      lambda do @preso.new_template 'foo.erb' end.should raise_error(ArgumentError)
+      lambda do @preso.new_slide 'foo.erb' end.should raise_error(ArgumentError)
     end
 
-    it "#new_template creates a new Markdown/Haml template and adds it's name to the config file" do
-      @preso.new_template 'foo.haml'
+    it "#new_slide creates a new Markdown/Haml/HTML template and adds it's name to the config file" do
+      @preso.new_slide 'foo.haml'
       JSON.parse(File.read(@preso.path/'config.json'))['slides'].should include('foo')
     end
-
-    it "#templates returns exclusively template formats of: #{Shining::Preso::TEMPLATE_FORMATS.join(', ')}." do
-      @preso.new_template 'foo.haml'
-      @preso.new_template 'test.markdown'
+  end
+  
+  describe 'templates' do
+    it "#templates returns exclusively these template formats: #{Shining::Preso::TEMPLATE_FORMATS.join(', ')}." do
+      @preso.new_slide 'foo.haml'
+      @preso.new_slide 'test.markdown'
       @preso.templates.should     include('foo.haml', 'test.markdown')
       @preso.templates.should_not include('welcome.html')
+    end
+    
+    it "#compile_templates! compiles either Markdown/Haml templates into HTML (slides)" do
+      @preso.new_slide 'test2.haml'
+      @preso.new_slide 'test3.markdown'
+      @preso.compile_templates!
+      (File.exists?(@preso.path/'slides'/'test2.html') and
+        File.exists?(@preso.path/'slides'/'test3.html')).should be_true
     end
   end
 

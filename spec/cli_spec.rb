@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe 'shine' do
   PRESO = Dir.tmpdir/'shining-tmp'/'preso'
-  SHINE = ROOT/'bin'/'shine'
+  SHINE = Shining.root/'bin'/'shine'
   
   def new_preso
     system "#{SHINE} #{PRESO}"
@@ -12,7 +12,7 @@ describe 'shine' do
     system "cd #{PRESO} && #{SHINE} vendor"
   end
   
-  def new_slide(name, format = nil)
+  def new_slide(name, format = 'html')
     system "cd #{PRESO} && #{SHINE} slide #{name} #{format}"
   end
   
@@ -45,7 +45,7 @@ describe 'shine' do
       File.exists?(PRESO/'slides'/'foo.js').should be_true
     end
     
-    it "creates a bew skude template named 'test.haml' on 'shine slide test haml'" do
+    it "creates a new slide template named 'test.haml' on 'shine slide test haml'" do
       new_slide 'test', 'haml'
       File.exists?(PRESO/'slides'/'test.haml').should be_true
       File.exists?(PRESO/'slides'/'test.js').should be_true
@@ -55,9 +55,7 @@ describe 'shine' do
       new_slide 'test'
       config = JSON.parse(File.read(PRESO/'config.json'))
       config['slides'].should include('test')
-    end
-    
-    it "won't let you create a slide with the same name of an already existing one"
+    end    
   end
   
   it "vendorizes Shining to #{PRESO/'vendor'} with the 'vendor' option" do

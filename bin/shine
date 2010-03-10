@@ -2,12 +2,7 @@
 
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-require 'rubygems'
-require 'fileutils'
-require 'tilt'
-require 'erb'
-require 'haml'
-require 'json/pure'
+require 'shining'
 
 ACTIONS   = {
   :new_on!            => ['build'], 
@@ -15,24 +10,10 @@ ACTIONS   = {
   :compile_templates! => ['compile'],
   :vendorize          => ['vendor', 'vendorize']
 }
-TEMPLATES     = %w(haml erb)
-SHINING_ROOT  = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-
-class String; def /(s) File.join(self, s) end end
-
-def doing what, &block
-  puts what
-  block.call if block_given?
-end
 
 def bail! reason
-  STDERR.puts(reason) and exit(-2)
-end
-
-def vendorized?
-  bail!("This isn't a Shining preso!") unless shining?
-  File.exists? Dir.pwd/'vendor'/'lib'/'jquery.shining.js' and
-    File.exists? Dir.pwd/'vendor'/'themes'
+  Shining.error reason
+  exit -2
 end
 
 def figure_what_to_do!
@@ -57,61 +38,23 @@ Shine - Generates a new Shining presentation
 end
 
 def new_on! dir
-  target = File.expand_path(dir)
-  doing("Creating #{target}")      { FileUtils.mkdir_p target }
-  doing("Creating #{target/'config.json'}") { FileUtils.cp SHINING_ROOT/'templates'/'config.json', target/'config.json' }
-  doing("Creating #{target/'index.html'}") {
-    contents = File.read(SHINING_ROOT/'templates'/'index.html')
-    File.open(target/'index.html', 'w') do |file| file.write ERB.new(contents).result end
-  }
-  doing("Creating #{target/'slides'}")      { FileUtils.cp_r SHINING_ROOT/'templates'/'slides', target/'slides' }
+  Shining::Preso.new dir
 end
 
-def new_slide! name, format = nil
-  bail!("This isn't a Shining preso!") unless shining?
-  file_name = Dir.pwd/'slides'/name + (format ? ".#{format}" : '.html')
-  doing("Creating #{file_name}")  {
-    File.open(file_name, 'w') do |file|
-      case format
-      when 'haml'
-        file.write "%h1.centered #{name}\n%p.centered ♫ ♫ ♫" 
-      when 'erb'
-        file.write "<h1 class='centered'>#{name}</h1><p class='centered>♫ ♫ ♫</p>"
-      else
-        file.write "<h1 class='centered'>#{name}</h1><p class='centered>♫ ♫ ♫</p>" 
-      end
-    end
-  }
-  doing("Creating #{Dir.pwd/'slides'/name}.js")    { FileUtils.touch Dir.pwd/'slides'/name + '.js' }
-  config = JSON.parse File.read(Dir.pwd/'config.json')
-  config['slides'] << name
-  File.open(Dir.pwd/'config.json', 'w') do |file| file.write JSON.pretty_generate(config) end
+def new_slide! name, format = 'html'
+  preso = Shining::Preso.open Dir.pwd
+  preso.new_slide "#{name}.#{format}", :with => ['styles', 'script']
 end
 
 def vendorize
-  bail! 'This preso seems vendorized already.' if vendorized?
-  FileUtils.mkdir Dir.pwd/'vendor'
-  %w(lib css images themes).each do |required|
-    FileUtils.cp_r SHINING_ROOT/required, Dir.pwd/'vendor/'
-  end
-  index = File.read SHINING_ROOT/'templates'/'index.html'
-  Object.send(:remove_const, :SHINING_ROOT) and Object.const_set(:SHINING_ROOT, 'vendor')
-  File.open(Dir.pwd/'index.html', 'w') do |file| file.write ERB.new(index).result end
-  puts "Done!"
+  preso = Shining::Preso.open Dir.pwd
+  bail! 'This preso seems vendorized already.' if preso.vendorized?
+  preso.vendorize!
 end
 
 def compile_templates!
-  bail!("This isn't a Shining preso!") unless shining?
-  Dir[Dir.pwd/'slides'/'*'].reject { |f| f =~ /html|js$/ }.each do |template|
-    begin
-      target   = File.basename(template).sub(File.extname(template), '.html')
-      rendered = Tilt.new(template).render
-      File.open(Dir.pwd/'slides'/target, 'w') do |file| file.write rendered end
-      puts "Compiled: #{File.basename(template)} -> #{target}"
-    rescue RuntimeError
-      STDERR.puts "Tilt coult not compile #{File.basename template}. Skipping."
-    end
-  end
+  preso = Shining::Preso.open Dir.pwd
+  preso.compile_templates!
 end
 
 def shining?
