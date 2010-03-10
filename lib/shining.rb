@@ -12,7 +12,7 @@ module Shining
       STDOUT.puts(something) unless defined?(Spec) # shush when running tests
       yield if block_given?
     end
-    
+
     def error message
       STDERR.puts message
     end
@@ -24,7 +24,7 @@ module Shining
     def templates_path
       root/'templates'
     end
-    
+
     def sample_content_for format = 'html'
       case format
       when 'markdown'

@@ -5,8 +5,8 @@ $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'shining'
 
 ACTIONS   = {
-  :new_on!            => ['build'], 
-  :new_slide!         => ['slide'], 
+  :new_on!            => ['build'],
+  :new_slide!         => ['slide'],
   :compile_templates! => ['compile'],
   :vendorize          => ['vendor', 'vendorize']
 }

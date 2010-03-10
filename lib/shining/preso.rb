@@ -7,7 +7,7 @@ module Shining
 class Preso
   include FileMethods and extend FileMethods
   attr_accessor :path
-  
+
   SLIDE_FORMATS     = %w(haml markdown html)
   TEMPLATE_FORMATS  = SLIDE_FORMATS - ['html']
 
@@ -19,7 +19,7 @@ class Preso
     end
     @config = json(@path/'config.json')
   end
-  
+
   def self.open dir
     begin
       new dir, false
@@ -27,7 +27,7 @@ class Preso
       raise "#{dir} is not a Shining presentation!"
     end
   end
-  
+
   def config refresh = false
     refresh ? @config = json(path/'config.json') : @config
   end
@@ -44,11 +44,11 @@ class Preso
     new_file @path/'index.html' do erb(Shining.templates_path/'index.html') end
     true
   end
-  
+
   def templates
     Dir[path/'slides'/"*.{#{TEMPLATE_FORMATS.join(',')}}"].map { |template| basename(template) }
   end
-  
+
   def new_slide file, options = {}
     file = basename(file)
     name, format = basename(file, extname(file)), extname(file).sub(/^./, '')
@@ -58,15 +58,15 @@ class Preso
     new_file path/'slides'/"#{name}.js"   if options[:with].include?('script') rescue nil
     config['slides'] << name and save_config!
   end
-  
+
   def slides
     @config['slides']
   end
-  
+
   def templates
     Dir[path/'slides'/"*.{#{TEMPLATE_FORMATS.join(',')}}"].map { |t| basename(t) }
   end
-  
+
   def compile_templates!
     templates.each do |template|
       begin
@@ -102,7 +102,7 @@ class Preso
       dir? @path/'vendor'/'themes' and
       dir? @path/'vendor'/'css' and
       dir? @path/'vendor'/'images'
-  end    
+  end
 end
 
 end
