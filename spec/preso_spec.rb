@@ -54,9 +54,28 @@ describe 'Shining::Preso' do
   end
   
   describe 'templates' do
-    it "returns a collection of Haml/Markdown templates" do
+    before do
+      FileUtils.rm_f @preso.path/'slides'/'*'
+    end
+    
+    it "raises an error if the format is not in the allowed formats list" do
+      lambda do @preso.new_template 'foo.erb' end.should raise_error(ArgumentError)
+    end
+    
+    it "#new_template creates a new Markdown/Haml template and adds it's name to the config file" do
+      @preso.new_template 'foo.haml'
       
     end
+    
+    # it "#templates returns a collection of Haml/Markdown templates" do
+    #   @preso.new_template 'foo.haml'
+    #   @preso.new_template 'test.markdown'
+    #   @preso.templates.should include('foo.haml', 'test.markdown')
+    # end
+    # 
+    # it "#new_template creates a Haml template when called with 'foo.haml'" do
+    #   @preso.new_template 'foo.haml'
+    # end
   end
 
   it "returns a collection of slides on #slides"

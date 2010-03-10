@@ -37,6 +37,14 @@ module FileMethods
     File.dirname file
   end
   
+  def extname file
+    File.extname file
+  end
+  
+  def basename file, take = ''
+    File.basename file, take
+  end
+  
   def delete! file
     dir?(file) ? FileUtils.rm_rf(file) : FileUtils.rm(file)
   end
@@ -44,7 +52,8 @@ module FileMethods
   def new_file path
     Shining.say "Creating file #{path}" do
       File.open path, 'w' do |file|
-        yield file if block_given?
+        yieldage = yield if block_given?
+        file.write yieldage unless yieldage.empty? or not yieldage.is_a?(String)
       end
     end
   end
