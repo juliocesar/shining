@@ -28,6 +28,10 @@ module FileMethods
   def erb file
     ERB.new(read_file(file)).result(binding)
   end
+  
+  def json file
+    JSON.parse read_file(file)
+  end
 
   def expand path
     File.expand_path path
