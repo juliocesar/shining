@@ -1,30 +1,51 @@
+require 'fileutils'
+require 'json/pure'
+
 module Shining
 
 class Preso
+  include FileMethods
+  attr_accessor :path
+
   def initialize(dir)
+    new_dir dir
     @path = File.expand_path(dir)
+    copy_templates
   end
-  
-  def vendorized?
-    File.exists? @path/'vendor'
-  end
-  
+
   def copy_templates
+    %w(config.json slides).each do |template|
+      copy Shining.templates_path/template, @path + '/'
+    end
+    new_file @path/'index.html' do |index|
+      index.write erb(Shining.templates_path/'index.html')
+    end
+    true
   end
-  
-  private
-  def shines?
-    file? @path/'config.json' and
-      file? @path/'index.html'
-      dir? @path/'slides'
+
+  def vendorize!
+    new_dir @path/'vendor'
+    %w(lib css images themes).each do |required|
+      copy required, @path/'vendor/'
+    end
+    new_file @path/'index.html' do |index| index.write erb(Shining.templates_path/'index.html') end
+    true
   end
-  
-  def file? file
-    File.exists? file
+
+  def vendorized?
+    dir? @path/'vendor'
   end
-  
-  def dir? dir
-    File.directory? dir
+
+  def unvendorize!
+    delete! @path/'vendor'
+    copy_templates
+  end
+
+  def vendorized?
+    dir? @path/'vendor'/'lib' and
+      dir? @path/'vendor'/'themes' and
+      dir? @path/'vendor'/'css' and
+      dir? @path/'vendor'/'images'
   end
 end
 

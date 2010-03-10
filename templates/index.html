@@ -3,15 +3,15 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Genesis</title>
-    <link rel="stylesheet" type="text/css" href="<%= SHINING_ROOT %>/css/base.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="<%= SHINING_ROOT %>/css/effects.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="<%= SHINING_ROOT %>/css/shCore.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="<%= SHINING_ROOT %>/css/shThemeFadeToGrey.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="<%= SHINING_ROOT %>/themes/default.css" media="all"/>
-    <script type="text/javascript" charset="utf-8" src="<%= SHINING_ROOT %>/lib/jquery-1.4.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="<%= SHINING_ROOT %>/lib/shCore.js"></script>
-    <script type="text/javascript" charset="utf-8" src="<%= SHINING_ROOT %>/lib/shBrushAll.js"></script>
-    <script type="text/javascript" charset="utf-8" src="<%= SHINING_ROOT %>/lib/jquery.shining.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%= vendorized? ? 'vendor' : Shining.root %>/css/base.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<%= vendorized? ? 'vendor' : Shining.root %>/css/effects.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<%= vendorized? ? 'vendor' : Shining.root %>/css/shCore.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<%= vendorized? ? 'vendor' : Shining.root %>/css/shThemeFadeToGrey.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<%= vendorized? ? 'vendor' : Shining.root %>/themes/default.css" media="all"/>
+    <script type="text/javascript" charset="utf-8" src="<%= vendorized? ? 'vendor' : Shining.root %>/lib/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%= vendorized? ? 'vendor' : Shining.root %>/lib/shCore.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%= vendorized? ? 'vendor' : Shining.root %>/lib/shBrushAll.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%= vendorized? ? 'vendor' : Shining.root %>/lib/jquery.shining.js"></script>
   </head>
   <body>
     <section id="stage"></section>
