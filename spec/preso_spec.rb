@@ -88,5 +88,7 @@ describe 'Shining::Preso' do
     end
   end
 
-  it "returns a collection of slides on #slides"
+  it "returns a collection of slides on #slides, which is what's in @config['slides']" do
+    @preso.slides.should include('welcome')
+  end
 end

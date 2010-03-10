@@ -58,6 +58,10 @@ class Preso
     new_file path/'slides'/"#{name}.js"   if options[:with].include?('script') rescue nil
     config['slides'] << name and save_config!
   end
+  
+  def slides
+    @config['slides']
+  end
 
   def vendorize!
     new_dir @path/'vendor'
