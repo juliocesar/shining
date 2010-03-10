@@ -4,7 +4,6 @@ require 'rubygems'
 require 'ext/string'
 require 'ext/filemethods'
 require 'shining/preso'
-require 'shining/generators'
 
 module Shining
   class << self
