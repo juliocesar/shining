@@ -4,16 +4,19 @@ require 'rubygems'
 require 'ext/string'
 require 'ext/filemethods'
 require 'shining/preso'
+require 'term/ansicolor'
 
 module Shining
+  extend Term::ANSIColor
+  
   class << self
     def say something
-      STDOUT.puts(something) unless defined?(Spec) # shush when running tests
+      STDOUT.puts(blue(something)) unless defined?(Spec) # shush when running tests
       yield if block_given?
     end
 
     def error message
-      STDERR.puts message
+      STDERR.puts red(bold(message))
     end
 
     def root

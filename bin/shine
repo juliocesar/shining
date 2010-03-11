@@ -57,8 +57,4 @@ def compile_templates!
   preso.compile_templates!
 end
 
-def shining?
-  File.exists?(Dir.pwd/'config.json') and File.directory?(Dir.pwd/'slides')
-end
-
 figure_what_to_do!
