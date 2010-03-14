@@ -4,20 +4,24 @@ describe 'shine' do
   PRESO = Dir.tmpdir/'shining-tmp'/'preso'
   SHINE = Shining.root/'bin'/'shine'
 
+  def quiet command
+    system "#{command} > /dev/null"
+  end
+
   def new_preso
-    system "#{SHINE} #{PRESO}"
+    quiet "#{SHINE} #{PRESO}"
   end
 
   def vendorize
-    system "cd #{PRESO} && #{SHINE} vendor"
+    quiet "cd #{PRESO} && #{SHINE} vendor"
   end
 
   def new_slide(name, format = 'html')
-    system "cd #{PRESO} && #{SHINE} slide #{name} #{format}"
+    quiet "cd #{PRESO} && #{SHINE} slide #{name} #{format}"
   end
 
   def compile_templates
-    system "cd #{PRESO} && #{SHINE} compile"
+    quiet "cd #{PRESO} && #{SHINE} compile"
   end
 
   def make_haml_template!(name)
