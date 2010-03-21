@@ -74,4 +74,13 @@ describe 'shine' do
     compile_templates
     File.read(PRESO/'slides'/'test.html').should == "<p>LOOK MA</p>\n"
   end
+  
+  describe 'go' do
+    it "for now only works on Mac OSX" do
+      player = Shining::Player.new
+      player.should_receive(:osx?).and_return(false)
+      lambda { player.go! }.should raise_error
+    end
+    it "fires up Plainview"
+  end
 end

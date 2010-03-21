@@ -4,6 +4,7 @@ require 'rubygems'
 require 'ext/string'
 require 'ext/filemethods'
 require 'shining/preso'
+require 'shining/player'
 require 'term/ansicolor'
 
 module Shining
