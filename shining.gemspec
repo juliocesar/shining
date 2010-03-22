@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.0.2"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-03-11}
+  s.date = %q{2010-03-23}
   s.description = %q{Webkit + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
   s.executables = ["console", "shine"]
@@ -39,7 +39,9 @@ Gem::Specification.new do |s|
      "lib/shBrushAll.js",
      "lib/shCore.js",
      "lib/shining.rb",
+     "lib/shining/player.rb",
      "lib/shining/preso.rb",
+     "shining.gemspec",
      "spec/cli_spec.rb",
      "spec/generators_spec.rb",
      "spec/preso_spec.rb",
@@ -58,7 +60,8 @@ Gem::Specification.new do |s|
      "templates/config.json",
      "templates/index.html",
      "templates/slides/welcome.html",
-     "themes/default.css"
+     "themes/default.css",
+     "themes/slidedown.css"
   ]
   s.homepage = %q{http://github.com/juliocesar/shining}
   s.rdoc_options = ["--charset=UTF-8"]
