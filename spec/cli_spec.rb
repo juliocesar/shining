@@ -76,11 +76,13 @@ describe 'shine' do
   end
   
   describe 'go' do
-    it "for now only works on Mac OSX" do
+    it "for now it only works on Mac OSX" do
       player = Shining::Player.new
       player.should_receive(:osx?).and_return(false)
       lambda { player.go! }.should raise_error
     end
+    
+    it "downloads and decompresses Plainview and if it's not found #{'PRESO_ROOT'/'vendor'/'Plainview.app'}"
     it "fires up Plainview"
   end
 end

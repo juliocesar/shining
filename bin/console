@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
-require File.join(File.dirname(__FILE__), *%w(.. .bundle environment))
-require 'harmony'
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'shining'
 require 'irb'
-require 'tilt'
+
 IRB.start

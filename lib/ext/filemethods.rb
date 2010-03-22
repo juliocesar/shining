@@ -11,6 +11,10 @@ module FileMethods
   def dir? dir
     File.directory? dir
   end
+  
+  def move from, to
+    Shining.say("Moving #{from} to #{to}") { FileUtils.mv(from, to) }
+  end
 
   def copy from, to
     Shining.say("Copying #{from} to #{to}") { File.directory?(from) ? FileUtils.cp_r(from, to) : FileUtils.cp(from, to) }

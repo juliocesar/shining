@@ -8,7 +8,8 @@ ACTIONS   = {
   :new_on!            => ['build'],
   :new_slide!         => ['slide'],
   :compile_templates! => ['compile'],
-  :vendorize          => ['vendor', 'vendorize']
+  :vendorize          => ['vendor', 'vendorize'],
+  :play               => ['play', 'go']
 }
 
 def bail! reason
@@ -55,6 +56,12 @@ end
 def compile_templates!
   preso = Shining::Preso.open Dir.pwd
   preso.compile_templates!
+end
+
+def play
+  preso = Shining::Preso.open Dir.pwd
+  player = Shining::Player.new preso
+  player.go!
 end
 
 figure_what_to_do!
