@@ -55,6 +55,23 @@ Say you have a slide template named **ROOT/slides/test.haml**. Running the afore
 command will generate a new **test.html** from it. Note that this will _overwrite_ an
 existing **test.html** slide if one exists.
 
+# Slide scripts
+
+Slides can have an associated script which you can use to trigger certain actions
+(e.g.: effects) at a predetermined time. If you used the generator to create a slide,
+you'll notice a .js file got created along with it. That's the script we're talking
+about. So for instance, say you have 2 hidden paragraphs in your slide, and you intent 
+to show one after another. Open that .js file and do
+
+    1, $('p:first').effect('fades-in')
+    3, $('p:eq(1)').effect('fades-in')
+    
+The above translates to: 1 second into this slide, fade in the first
+paragraph. 3 seconds in, fade in the second paragraph.
+
+This is handy if you want to schedule things you'd like to see happening at certain
+stages during a presentation.
+
 # Steps to winning
 
 Quickly outline of things I'm going to do with this project:
