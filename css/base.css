@@ -39,6 +39,8 @@ ul    { display: inline-block; margin-left: 2em }
 #stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }
 
+div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -10px }
+
 @media all and (min-width: 480px)   { #stage  { font-size: 80% } }
 @media all and (min-width: 640px)   { #stage  { font-size: 100% } }
 @media all and (min-width: 800px)   { #stage  { font-size: 130% } }
