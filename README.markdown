@@ -24,10 +24,23 @@ Which leads us to...
 
 # Configuration
 
-Presentation-wide configuration happens through the **config.json** file. The existing
-parameters are what I like to call "self documenting" enough so I'll refrain from
-explaining them for now. The only detail worth nothing is that the slides _have_ to be
-listed in the slides array, or else Shining will ignore their existence.
+Presentation-wide configuration happens through the **config.json** file. Existing
+parameters are:
+
+* slides: an array containing the name of the presentation's slides. If you're using
+the generator to add slides, don't worry about editing it.
+* transitions: See next section.
+
+# Transitions
+
+Transitions take effect when you navigate back or forward your slides. Valid options are:
+
+* "fade": Fades slides out/in.
+* "slide": Slides them horizontally.
+* "slice": Cool horizontal slicing effect.
+* false: Setting to false disables transitions altogether.
+
+For anything not false, make sure you're passing a proper string.
 
 # Slides
 
