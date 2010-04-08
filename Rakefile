@@ -6,6 +6,14 @@ Spec::Rake::SpecTask.new do |t|
   t.spec_opts = ['--colour', '--format nested']
 end
 
+namespace :spec do
+  desc 'runs Javascript specs'
+  task :javascripts do
+    Dir.chdir File.join(File.dirname(__FILE__), 'spec', 'javascripts')
+    system "jspec run dom.html"
+  end
+end
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
