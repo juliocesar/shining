@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.1.1"
+  s.version = "1.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-04-07}
+  s.date = %q{2010-04-08}
   s.description = %q{Webkit + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
   s.executables = ["console", "shine"]
@@ -44,6 +44,19 @@ Gem::Specification.new do |s|
      "shining.gemspec",
      "spec/cli_spec.rb",
      "spec/generators_spec.rb",
+     "spec/javascripts/dom.html",
+     "spec/javascripts/rhino.js",
+     "spec/javascripts/sample/config.json",
+     "spec/javascripts/sample/index.html",
+     "spec/javascripts/sample/slides/slide1.css",
+     "spec/javascripts/sample/slides/slide1.html",
+     "spec/javascripts/sample/slides/slide1.js",
+     "spec/javascripts/sample/slides/slide2.css",
+     "spec/javascripts/sample/slides/slide2.html",
+     "spec/javascripts/sample/slides/slide2.js",
+     "spec/javascripts/sample/slides/welcome.html",
+     "spec/javascripts/unit/spec.helper.js",
+     "spec/javascripts/unit/spec.js",
      "spec/preso_spec.rb",
      "spec/sample/base.css",
      "spec/sample/config.json",
@@ -55,7 +68,6 @@ Gem::Specification.new do |s|
      "spec/sample/slides/second.js",
      "spec/sample/slides/third.html",
      "spec/sample/slides/third.js",
-     "spec/shining_spec.rb",
      "spec/spec_helper.rb",
      "templates/config.json",
      "templates/index.html",
@@ -72,7 +84,6 @@ Gem::Specification.new do |s|
     "spec/cli_spec.rb",
      "spec/generators_spec.rb",
      "spec/preso_spec.rb",
-     "spec/shining_spec.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -87,12 +98,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.6.3"])
       s.add_runtime_dependency(%q<term-ansicolor>, [">= 1.0.4"])
       s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
-      s.add_development_dependency(%q<stackdeck>, ["= 0.2.0"])
-      s.add_development_dependency(%q<johnson>, ["= 2.0.0.pre2"])
-      s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
+      s.add_development_dependency(%q<jspec>, ["= 4.2.0"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
-      s.add_development_dependency(%q<envjs>, ["= 0.1.4"])
-      s.add_development_dependency(%q<juliocesar-harmony>, ["= 0.5.2"])
     else
       s.add_dependency(%q<haml>, [">= 2.2.17"])
       s.add_dependency(%q<json_pure>, [">= 1.1.9"])
@@ -100,12 +107,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rdiscount>, [">= 1.6.3"])
       s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
       s.add_dependency(%q<rspec>, ["= 1.3.0"])
-      s.add_dependency(%q<stackdeck>, ["= 0.2.0"])
-      s.add_dependency(%q<johnson>, ["= 2.0.0.pre2"])
-      s.add_dependency(%q<rspec>, ["= 1.3.0"])
+      s.add_dependency(%q<jspec>, ["= 4.2.0"])
       s.add_dependency(%q<rake>, ["= 0.8.7"])
-      s.add_dependency(%q<envjs>, ["= 0.1.4"])
-      s.add_dependency(%q<juliocesar-harmony>, ["= 0.5.2"])
     end
   else
     s.add_dependency(%q<haml>, [">= 2.2.17"])
@@ -114,12 +117,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rdiscount>, [">= 1.6.3"])
     s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
     s.add_dependency(%q<rspec>, ["= 1.3.0"])
-    s.add_dependency(%q<stackdeck>, ["= 0.2.0"])
-    s.add_dependency(%q<johnson>, ["= 2.0.0.pre2"])
-    s.add_dependency(%q<rspec>, ["= 1.3.0"])
+    s.add_dependency(%q<jspec>, ["= 4.2.0"])
     s.add_dependency(%q<rake>, ["= 0.8.7"])
-    s.add_dependency(%q<envjs>, ["= 0.1.4"])
-    s.add_dependency(%q<juliocesar-harmony>, ["= 0.5.2"])
   end
 end
 
