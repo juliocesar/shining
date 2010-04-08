@@ -8,11 +8,23 @@ describe 'Shining'
     hidden.append(stage).append(controls);
   end
   
-  it 'should have a stage'
-    $('#stage').length.should.be 1
+  describe "structurally speaking"  
+    it 'should have a stage'
+      $('#stage').length.should.be 1
+    end
+  
+    it 'should have navigation controls'
+      $('#controls').length.should.be 1
+    end
   end
   
-  it 'should have navigation controls'
-    $('#controls').length.should.be 1
+  describe "config file"
+    it 'gets read when shining gets loaded'
+      $.shining.config.constructor.should.be Object
+    end
+  end
+  
+  describe 'navigating slides'
+  
   end
 end

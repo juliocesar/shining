@@ -77,7 +77,7 @@ describe 'shine' do
   
   describe 'go' do
     it "for now it only works on Mac OSX" do
-      player = Shining::Player.new
+      player = Shining::Player.new Shining::Preso.open(PRESO)
       player.should_receive(:osx?).and_return(false)
       lambda { player.go! }.should raise_error
     end
