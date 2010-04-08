@@ -1,6 +1,7 @@
 describe 'Shining'
   before_each
     window.$ = jQuery;
+    $.fn.offset = function() { return 0 };
     var hidden = $('<div></div>').css({height: 0, width: 0, opacity: 0, marginLeft: -10000}).appendTo('body');
     var stage = $($(fixture('index.html')).get(0)),
       controls = $($(fixture('index.html')).get(2));
