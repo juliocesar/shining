@@ -1,0 +1,8 @@
+{
+  "transitions": "fade",
+  "slides": [
+    "welcome",
+    "slide1",
+    "slide2"
+  ]
+}

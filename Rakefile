@@ -21,12 +21,8 @@ begin
     gem.add_dependency      'rdiscount',      '>= 1.6.3'
     gem.add_dependency      'term-ansicolor', '>= 1.0.4'
     gem.add_development_dependency 'rspec', '1.3.0'
-    gem.add_development_dependency 'stackdeck',  '0.2.0'
-    gem.add_development_dependency 'johnson',    '2.0.0.pre2'
-    gem.add_development_dependency 'rspec',      '1.3.0'
-    gem.add_development_dependency 'rake',       '0.8.7'
-    gem.add_development_dependency 'envjs',      '0.1.4'
-    gem.add_development_dependency 'juliocesar-harmony', '0.5.2'
+    gem.add_development_dependency 'jspec', '4.2.0'    
+    gem.add_development_dependency 'rake',  '0.8.7'
   end
 rescue LoadError
   puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
