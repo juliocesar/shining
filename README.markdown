@@ -1,6 +1,6 @@
 # Shining
 
-A presentation framework to be used with Webkit. Yeah, it's all in-browser.
+A framework for creating in-browser presentations.
 
 # Installation
 
