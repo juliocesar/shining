@@ -1,7 +1,8 @@
 describe 'Shining'
   before_each
     window.$ = jQuery;
-    $.fn.offset = function() { return 0 };
+    $.fn.offset = function() { return 0 }
+    $.fn.centralize = function() { return false }
     if (!$('#hidden').length) {
       var hidden = $('<div id="hidden"></div>').css({height: 0, width: 0, opacity: 0, marginLeft: -10000}).appendTo('body');
       var stage = $($(fixture('index.html')).get(0)),
@@ -53,6 +54,6 @@ describe 'Shining'
       mockRequest().and_return('<h1>Slide2</h1>');
       $.shining.nextSlide();
       $('#stage .contents h1').text().should.be 'Slide2'
-    end
+    end    
   end
 end
