@@ -2,6 +2,10 @@ body          { background-color: rgb(48, 48, 48) }
 #stage        { 
   -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
   -webkit-border-radius: 5px;
+  -moz-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+  -moz-border-radius: 5px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;  
 }
 
 h1, h2, h3, p, li { color: rgb(238, 238, 238); text-shadow: rgb(0, 0, 0) 2px 2px 4px }
@@ -16,6 +20,9 @@ ul                { list-style-type: disc }
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;  
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;  
+  
 }
 #controls a   { display: inline-block; width: 75px; padding: 5px 0; font-weight: bold; color: #fff; }
 em            { color: rgb(73, 255, 80) }
