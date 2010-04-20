@@ -12,18 +12,5 @@ h1, h2, h3, p, li { color: rgb(238, 238, 238); text-shadow: rgb(0, 0, 0) 2px 2px
 a                 { color: rgb(73, 157, 255); text-decoration: none }
 ul                { list-style-type: disc }
 
-#controls     { 
-  position: fixed; 
-  bottom: 0; 
-  left: 62%; 
-  margin-left: -300px; 
-  background-color: rgba(0, 0, 0, 0.5);
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;  
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;  
-  
-}
-#controls a   { display: inline-block; width: 75px; padding: 5px 0; font-weight: bold; color: #fff; }
 em            { color: rgb(73, 255, 80) }
 strong        { color: rgb(255, 171, 73); font-weight: bold }
