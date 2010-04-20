@@ -4,17 +4,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 margin : 0; padding : 0; border : 0; outline : 0; font-size : 100%; vertical-align : baseline; background : transparent; }
 body { line-height : 1; }
 ol, ul { list-style-type : none; }
-:focus { outline : 0 } 
+:focus { outline : 0 }
 ins { text-decoration : none; }
 del { text-decoration : line-through }
 
-body  { 
+body  {
   font: 12px/1.5 "Lucida Grande", Tahoma, serif;
   overflow: hidden;
   text-align: center;
 }
 
-#stage  { 
+#stage  {
   position: relative;
   display: inline-block;
   padding: 40px 20px;
@@ -40,6 +40,19 @@ ul    { display: inline-block; margin-left: 2em }
 a          { cursor: pointer }
 
 div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -10px }
+
+#help {
+  display: inline-block;
+  font-size: 200%;
+  opacity: 0;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  padding: 10px;
+}
 
 @media all and (min-width: 480px)   { #stage  { font-size: 80% } }
 @media all and (min-width: 640px)   { #stage  { font-size: 100% } }
