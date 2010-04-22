@@ -12,6 +12,10 @@ module FileMethods
     File.directory? dir
   end
   
+  def change_dir to
+    Dir.chdir to
+  end
+  
   def move from, to
     Shining.say("Moving #{from} to #{to}") { FileUtils.mv(from, to) }
   end

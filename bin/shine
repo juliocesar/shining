@@ -9,7 +9,8 @@ ACTIONS   = {
   :new_slide!         => ['slide'],
   :compile_templates! => ['compile'],
   :vendorize          => ['vendor', 'vendorize'],
-  :play               => ['play', 'go']
+  :play               => ['play', 'go'],
+  :deploy             => ['deploy']
 }
 
 def bail! reason
@@ -62,6 +63,11 @@ def play
   preso = Shining::Preso.open Dir.pwd
   player = Shining::Player.new preso
   player.go!
+end
+
+def deploy name = nil
+  preso = Shining::Preso.open Dir.pwd
+  Shining::Heroku.deploy preso, name
 end
 
 figure_what_to_do!

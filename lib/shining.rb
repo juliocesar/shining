@@ -5,6 +5,7 @@ require 'ext/string'
 require 'ext/filemethods'
 require 'shining/preso'
 require 'shining/player'
+require 'shining/heroku'
 require 'term/ansicolor'
 
 module Shining

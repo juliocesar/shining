@@ -7,7 +7,7 @@ module Shining
 class Player
   include FileMethods and extend FileMethods
   
-  def initialize(preso)
+  def initialize preso
     raise ArgumentError, "argument needs to be an instance of Shining::Preso" unless preso.is_a? Shining::Preso
     @preso = preso
   end
