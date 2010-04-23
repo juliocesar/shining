@@ -15,7 +15,7 @@ body  {
 }
 
 #stage  {
-  position: relative;
+  position: absolute;
   display: inline-block;
   padding: 40px 20px;
   max-width: 90%;
