@@ -1,4 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__))
+$:.unshift File.dirname(__FILE__)
 
 require 'rubygems'
 require 'ext/string'
@@ -6,14 +6,12 @@ require 'ext/filemethods'
 require 'shining/preso'
 require 'shining/player'
 require 'shining/heroku'
-require 'term/ansicolor'
 
 module Shining
-  extend Term::ANSIColor
   
   class << self
     def say something
-      STDOUT.puts(blue(something)) unless defined?(Spec) # shush when running tests
+      STDOUT.puts(something) unless defined?(Spec) # shush when running tests
       yield if block_given?
     end
 
