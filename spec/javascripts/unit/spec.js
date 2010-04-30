@@ -23,36 +23,36 @@ describe 'Shining'
   
   describe "config file"
     it 'gets read when shining gets loaded'
-      $.shining.config.constructor.should.be Object
+      Shining.config.constructor.should.be Object
     end
   end
   
   describe "slides"
     it '#current() returns the first slide by default'
-      $.shining.slides.current().should.be 'welcome'
+      Shining.slides.current().should.be 'welcome'
     end  
     
     it '#current("slide1") sets the current slide to "slide1"'
-      $.shining.slides.current('slide1')
-      $.shining.slides.current().should.be 'slide1'
+      Shining.slides.current('slide1')
+      Shining.slides.current().should.be 'slide1'
     end
     
     it "#last() returns the last slide in the slides array"
-      $.shining.slides.last().should.be 'slide2'
+      Shining.slides.last().should.be 'slide2'
     end
   end
   
   describe 'navigating slides'
-    it 'navigates to slide1 on $.shining.nextSlide()'
-      $.shining.slides.current('welcome')
+    it 'navigates to slide1 on Shining.nextSlide()'
+      Shining.slides.current('welcome')
       mockRequest().and_return('<h1>Slide1</h1>');    
-      $.shining.nextSlide();
+      Shining.nextSlide();
       $('#stage .contents h1').text().should.be 'Slide1'
     end
     
-    it 'navigates to slide2 on $.shining.nextSlide()'
+    it 'navigates to slide2 on Shining.nextSlide()'
       mockRequest().and_return('<h1>Slide2</h1>');
-      $.shining.nextSlide();
+      Shining.nextSlide();
       $('#stage .contents h1').text().should.be 'Slide2'
     end    
   end
