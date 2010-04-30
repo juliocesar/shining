@@ -16,7 +16,7 @@ module Shining
     end
 
     def error message
-      STDERR.puts red(bold(message))
+      STDERR.puts message
     end
 
     def root
