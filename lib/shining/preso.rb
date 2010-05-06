@@ -16,6 +16,7 @@ class Preso
     if fresh
       new_dir dir
       copy_templates
+      vendorize!
     end
     @config = json(@path/'config.json')
   end
@@ -38,10 +39,9 @@ class Preso
   end
 
   def copy_templates
-    %w(config.json slides).each do |template|
+    %w(config.json slides index.html).each do |template|
       copy Shining.templates_path/template, @path + '/'
     end
-    new_file @path/'index.html' do erb(Shining.templates_path/'index.html') end
     true
   end
 
@@ -84,24 +84,7 @@ class Preso
     %w(lib css images themes).each do |required|
       copy Shining.root/required, @path/'vendor/'
     end
-    new_file @path/'index.html' do erb(Shining.templates_path/'index.html') end
     true
-  end
-
-  def vendorized?
-    dir? @path/'vendor'
-  end
-
-  def unvendorize!
-    delete! @path/'vendor'
-    copy_templates
-  end
-
-  def vendorized?
-    dir? @path/'vendor'/'lib' and
-      dir? @path/'vendor'/'themes' and
-      dir? @path/'vendor'/'css' and
-      dir? @path/'vendor'/'images'
   end
 end
 

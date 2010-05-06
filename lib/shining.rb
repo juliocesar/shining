@@ -8,7 +8,6 @@ require 'shining/player'
 require 'shining/heroku'
 
 module Shining
-  
   class << self
     def say something
       STDOUT.puts(something) unless defined?(Spec) # shush when running tests

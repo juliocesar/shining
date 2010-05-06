@@ -18,11 +18,13 @@ describe 'Shining::Preso' do
       File.directory?(TMP/'temp').should be_true
     end
 
-    it "copies an initial set of templates to the presentation folder" do
-      (File.exists?(TMP/'temp'/'config.json')
-      File.exists?(TMP/'temp'/'index.html')
-      File.directory?(TMP/'temp'/'slides')
-      File.exists?(TMP/'temp'/'slides'/'welcome.html')).should be_true
+    it "copies everything necessary to run the preso to the target folder" do
+      %w(lib themes css).each do |required|
+        File.directory?(TMP/'temp'/'vendor'/required).should be_true
+      end
+      %w(config.json index.html slides/welcome.html).each do |required|
+        File.exists?(TMP/'temp'/required).should be_true
+      end
     end
   end
   
@@ -34,33 +36,6 @@ describe 'Shining::Preso' do
     
     it "errors out if the directory is not a Shining presentation" do
       lambda do Shining::preso.open TMP end.should raise_error
-    end
-  end
-
-  describe 'vendorization' do
-    before do
-      @preso.vendorize!
-    end
-
-    it "#vendorize! copies everything necessary for the presentation to run without the gem being installed" do
-      (File.directory?(@preso.path/'vendor'/'lib') and
-        File.directory?(@preso.path/'vendor'/'themes') and
-        File.directory?(@preso.path/'vendor'/'css') and
-        File.directory?(@preso.path/'vendor'/'images')).should be_true
-    end
-
-    it "returns true on #vendorized? if a presentation is vendorized, false when not" do
-      @preso.vendorized?.should be_true
-      File.read(@preso.path/'index.html').should =~ /vendor\/lib/
-    end
-
-    it "\"unvendorizes\" a gem on #unvendorize!" do
-      @preso.unvendorize!
-      (File.directory?(@preso.path/'vendor'/'lib') and
-        File.directory?(@preso.path/'vendor'/'themes') and
-        File.directory?(@preso.path/'vendor'/'css') and
-        File.directory?(@preso.path/'vendor'/'images')).should be_false
-      File.read(@preso.path/'index.html').should_not =~ /vendor\/lib/
     end
   end
 
