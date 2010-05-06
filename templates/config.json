@@ -1,5 +1,6 @@
 {
   "slides":       ["welcome"],
   "title":        "Your presentation",
+  "plugins":      ["resize"],
   "transitions":  "fade"
 }
