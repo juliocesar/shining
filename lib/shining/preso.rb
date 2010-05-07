@@ -81,7 +81,10 @@ class Preso
 
   def vendorize!
     new_dir @path/'vendor'
-    %w(lib css images themes).each do |required|
+    new_dir @path/'vendor'/'lib'
+    copy Shining.root/'lib'/'*.js', @path/'vendor'/'lib'
+    copy Shining.root/'lib'/'plugins', @path/'vendor'/'lib/'
+    %w(css images themes).each do |required|
       copy Shining.root/required, @path/'vendor/'
     end
     true
