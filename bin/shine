@@ -8,7 +8,6 @@ ACTIONS   = {
   :new_on!            => ['build'],
   :new_slide!         => ['slide'],
   :compile_templates! => ['compile'],
-  :vendorize          => ['vendor', 'vendorize'],
   :play               => ['play', 'go'],
   :deploy             => ['deploy']
 }
@@ -46,12 +45,6 @@ end
 def new_slide! name, format = 'html'
   preso = Shining::Preso.open Dir.pwd
   preso.new_slide "#{name}.#{format}", :with => ['styles', 'script']
-end
-
-def vendorize
-  preso = Shining::Preso.open Dir.pwd
-  bail! 'This preso seems vendorized already.' if preso.vendorized?
-  preso.vendorize!
 end
 
 def compile_templates!

@@ -17,16 +17,16 @@ module FileMethods
   end
   
   def move from, to
-    Shining.say("Moving #{from} to #{to}") { FileUtils.mv(from, to) }
+    Shining.say("  Moving\t#{from} to #{to}") { FileUtils.mv(from, to) }
   end
 
   def copy from, to
-    Shining.say("Copying #{from} to #{to}") { File.directory?(from) ? FileUtils.cp_r(from, to) : FileUtils.cp(from, to) }
+    Shining.say("  Copying\t#{from} to #{to}") { File.directory?(from) ? FileUtils.cp_r(from, to) : FileUtils.cp(from, to) }
   end
 
   def new_dir dir, careful = true
     confirm "#{dir} already exists. Proceed?" if careful and dir?(dir)
-    Shining.say("Creating directory #{dir}") { FileUtils.mkdir_p dir }
+    Shining.say("  Creating\t#{dir}") { FileUtils.mkdir_p dir }
   end
 
   def read_file file

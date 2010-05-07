@@ -62,20 +62,13 @@ describe 'shine' do
     end
   end
 
-  it "vendorizes Shining to #{PRESO/'vendor'} with the 'vendor' option" do
-    vendorize
-    %w(lib themes css).each do |required|
-      File.exists?(PRESO/'vendor'/required).should be_true
-    end
-  end
-
   it "compiles a Haml template if there is one in #{'PRESO_ROOT'/'slides'/'test.haml'} with the 'compile' option" do
     make_haml_template! 'test'
     compile_templates
     File.read(PRESO/'slides'/'test.html').should == "<p>LOOK MA</p>\n"
   end
   
-  describe 'go' do
+  context 'go' do
     it "for now it only works on Mac OSX" do
       player = Shining::Player.new Shining::Preso.open(PRESO)
       player.should_receive(:osx?).and_return(false)
