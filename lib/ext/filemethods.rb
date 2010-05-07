@@ -11,17 +11,23 @@ module FileMethods
   def dir? dir
     File.directory? dir
   end
-  
+
   def change_dir to
     Dir.chdir to
   end
-  
+
   def move from, to
-    Shining.say("  Moving\t#{from} to #{to}") { FileUtils.mv(from, to) }
+    Shining.say("  Moving\t#{from} to #{to}") {
+      Dir[from].each do |something| FileUtils.mv something, to end
+    }
   end
 
   def copy from, to
-    Shining.say("  Copying\t#{from} to #{to}") { File.directory?(from) ? FileUtils.cp_r(from, to) : FileUtils.cp(from, to) }
+    Shining.say("  Copying\t#{from} to #{to}") {
+      Dir[from].each do |something|
+        File.directory?(something) ? FileUtils.cp_r(something, to) : FileUtils.cp(something, to)
+      end
+    }
   end
 
   def new_dir dir, careful = true
@@ -36,7 +42,7 @@ module FileMethods
   def erb file
     ERB.new(read_file(file)).result(binding)
   end
-  
+
   def json file
     JSON.parse read_file(file)
   end
@@ -48,15 +54,15 @@ module FileMethods
   def dirname file
     File.dirname file
   end
-  
+
   def extname file
     File.extname file
   end
-  
+
   def basename file, take = ''
     File.basename file, take
   end
-  
+
   def delete! file
     dir?(file) ? FileUtils.rm_rf(file) : FileUtils.rm(file)
   end
