@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.2.0"
+  s.version = "1.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-04-23}
+  s.date = %q{2010-05-10}
   s.description = %q{Webkit + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
   s.executables = ["console", "shine"]
@@ -35,16 +35,18 @@ Gem::Specification.new do |s|
      "lib/ext/filemethods.rb",
      "lib/ext/string.rb",
      "lib/jquery-1.4.1.min.js",
-     "lib/jquery.shining.js",
-     "lib/plugins/jquery.shining-audio-0.0.1.js",
+     "lib/plugins/resize.js",
+     "lib/plugins/syntaxhighlighter.js",
      "lib/shBrushAll.js",
      "lib/shCore.js",
+     "lib/shining.js",
      "lib/shining.rb",
      "lib/shining/heroku.rb",
      "lib/shining/player.rb",
      "lib/shining/preso.rb",
      "shining.gemspec",
      "spec/cli_spec.rb",
+     "spec/filemethods_spec.rb",
      "spec/generators_spec.rb",
      "spec/javascripts/dom.html",
      "spec/javascripts/rhino.js",
@@ -84,6 +86,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Webkit + CSS + Javascript = awesome presos}
   s.test_files = [
     "spec/cli_spec.rb",
+     "spec/filemethods_spec.rb",
      "spec/generators_spec.rb",
      "spec/preso_spec.rb",
      "spec/spec_helper.rb"
