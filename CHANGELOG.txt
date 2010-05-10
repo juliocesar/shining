@@ -1,0 +1,7 @@
+= 1.3.0 (10/05/2010)
+
+* Rudimentary plugins system
+  - check lib/plugins for 2 examples
+* Vendoring by default to address security restrictions with Google Chrome
+  - smarter vendoring though, so now only files that are strictly necessary to play a preso are copied.
+* Instead of blindly trusting FileUtils, I'm now speccing Shining::FileMethods
