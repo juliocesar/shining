@@ -8,7 +8,6 @@ class Heroku
   class << self
     def deploy preso, name
       check_for_git_and_heroku
-      preso.vendorize! unless preso.vendorized?
       copy Shining.root/'lib'/'config.ru', preso.path
       change_dir preso.path
       `git init && git add . && git commit -m 'heroku deploy'`

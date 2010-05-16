@@ -9,8 +9,20 @@ require 'shining/heroku'
 
 module Shining
   class << self
+    def quiet!
+      @quiet = true
+    end
+    
+    def quiet?
+      !!@quiet
+    end
+    
+    def verbose!
+      @quiet = false
+    end
+    
     def say something
-      STDOUT.puts(something) unless defined?(Spec) # shush when running tests
+      STDOUT.puts(something) unless quiet?
       yield if block_given?
     end
 
