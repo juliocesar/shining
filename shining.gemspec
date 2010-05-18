@@ -5,14 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.3.1"
+  s.version = "1.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-05-18}
+  s.date = %q{2010-05-19}
+  s.default_executable = %q{shine}
   s.description = %q{HTML + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
-  s.executables = ["console", "shine"]
+  s.executables = ["shine"]
   s.extra_rdoc_files = [
     "README.markdown"
   ]
@@ -21,10 +22,10 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION",
-     "bin/console",
      "bin/shine",
      "css/base.css",
      "css/effects.css",
+     "css/iphone.css",
      "css/shCore.css",
      "css/shThemeFadeToGrey.css",
      "images/help.png",
@@ -36,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/ext/filemethods.rb",
      "lib/ext/string.rb",
      "lib/jquery-1.4.1.min.js",
+     "lib/plugins/iphone.js",
      "lib/plugins/resize.js",
      "lib/plugins/syntaxhighlighter.js",
      "lib/shBrushAll.js",
@@ -73,6 +75,7 @@ Gem::Specification.new do |s|
      "spec/sample/slides/second.js",
      "spec/sample/slides/third.html",
      "spec/sample/slides/third.js",
+     "spec/shining_spec.rb",
      "spec/spec_helper.rb",
      "templates/config.json",
      "templates/index.html",
@@ -80,16 +83,17 @@ Gem::Specification.new do |s|
      "themes/default.css",
      "themes/slidedown.css"
   ]
-  s.homepage = %q{http://github.com/juliocesar/shining}
+  s.homepage = %q{http://shining.heroku.com}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{Webkit + CSS + Javascript = awesome presos}
+  s.summary = %q{HTML + CSS + Javascript = awesome presos}
   s.test_files = [
     "spec/cli_spec.rb",
      "spec/filemethods_spec.rb",
      "spec/generators_spec.rb",
      "spec/preso_spec.rb",
+     "spec/shining_spec.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -102,7 +106,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<json_pure>, [">= 1.1.9"])
       s.add_runtime_dependency(%q<tilt>, [">= 0.6"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.6.3"])
-      s.add_runtime_dependency(%q<term-ansicolor>, [">= 1.0.4"])
+      s.add_runtime_dependency(%q<heroku>, [">= 1.9.9"])
       s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
       s.add_development_dependency(%q<jspec>, ["= 4.2.0"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
@@ -111,7 +115,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<json_pure>, [">= 1.1.9"])
       s.add_dependency(%q<tilt>, [">= 0.6"])
       s.add_dependency(%q<rdiscount>, [">= 1.6.3"])
-      s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
+      s.add_dependency(%q<heroku>, [">= 1.9.9"])
       s.add_dependency(%q<rspec>, ["= 1.3.0"])
       s.add_dependency(%q<jspec>, ["= 4.2.0"])
       s.add_dependency(%q<rake>, ["= 0.8.7"])
@@ -121,7 +125,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<json_pure>, [">= 1.1.9"])
     s.add_dependency(%q<tilt>, [">= 0.6"])
     s.add_dependency(%q<rdiscount>, [">= 1.6.3"])
-    s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
+    s.add_dependency(%q<heroku>, [">= 1.9.9"])
     s.add_dependency(%q<rspec>, ["= 1.3.0"])
     s.add_dependency(%q<jspec>, ["= 4.2.0"])
     s.add_dependency(%q<rake>, ["= 0.8.7"])
