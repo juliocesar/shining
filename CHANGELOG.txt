@@ -1,3 +1,7 @@
+= 1.3.2
+
+* Always including config.ru.
+
 = 1.3.1 (18/05/2010)
 
 * Fixed stage resizing issues.

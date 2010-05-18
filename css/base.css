@@ -38,7 +38,7 @@ div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -1
   right: 10px;
   top: 10px;
   background-color: #000;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 10px;
 }
