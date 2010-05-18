@@ -1,7 +1,6 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 
-describe 'Shining::Preso' do
-
+describe Shining::Preso do
   before :all do
     TMP = Dir.tmpdir/'shining-tmp' unless defined?(TMP)
     FileUtils.rm_rf   TMP
