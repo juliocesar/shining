@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.3.0"
+  s.version = "1.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-05-10}
+  s.date = %q{2010-05-18}
   s.description = %q{Webkit + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
   s.executables = ["console", "shine"]
@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
     "README.markdown"
   ]
   s.files = [
-    "README.markdown",
+    "CHANGELOG.txt",
+     "README.markdown",
      "Rakefile",
      "VERSION",
      "bin/console",

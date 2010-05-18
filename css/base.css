@@ -9,7 +9,7 @@ ins { text-decoration : none; }
 del { text-decoration : line-through }
 
 body    { font: 12px/1.5 "Lucida Grande", Tahoma, serif; overflow: hidden; text-align: center }
-#stage  { position: absolute; display: inline-block; padding: 40px 20px; max-width: 90%; text-align: left }
+#stage  { position: relative; display: inline-block; padding: 40px 20px; max-width: 90%; text-align: left; margin: 0 auto; }
 
 .no-text-shadow { text-shadow: none }
 .no-drop-shadow {}
@@ -42,3 +42,4 @@ div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -1
   color: #fff;
   padding: 10px;
 }
+
