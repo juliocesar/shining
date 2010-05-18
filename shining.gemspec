@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
   s.date = %q{2010-05-18}
-  s.description = %q{Webkit + CSS + Javascript = awesome presos}
+  s.description = %q{HTML + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
   s.executables = ["console", "shine"]
   s.extra_rdoc_files = [
