@@ -49,7 +49,7 @@ module FileMethods
     rescue Errno::ENOENT
       raise Shining::NoSuchFile, "File #{file} doesn't exist"
     rescue 
-      raise Shining::CantParseJSONFile, "Couldn't parse contents of #{file} as JSON"
+      raise Shining::CantParseJSONFile, "File #{file} doesn't appear to be valid JSON"
     end
   end
 
