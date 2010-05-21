@@ -24,6 +24,20 @@ describe Shining::FileMethods do
     dir?(TMP/'temp'/'adir').should be_true
   end
   
+  context '#json' do
+    it 'parses JSON' do
+      File.open(TMP/'foo.json', 'w') { |file| file << "[1, 2, 3]" }
+      json(TMP/'foo.json').should be_a Array
+    end
+    it "raises Shining::NoSuchFile if the file doesn't exist" do
+      lambda do json(TMP/'aaabbbbbbcccc') end.should raise_error Shining::NoSuchFile
+    end
+    it "raises Shining::CantParseJSONFile if the file isn't valid JSON" do
+      File.open(TMP/'foo.json', 'w') { |file| file << "oaskdo ksdp kdpo asdk apos" }
+      lambda do json(TMP/'foo.json') end.should raise_error Shining::CantParseJSONFile
+    end
+  end
+  
   context '#move and #copy' do
     before do
       FileUtils.mkdir TMP/'temp'/'dir1'

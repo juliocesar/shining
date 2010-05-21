@@ -6,6 +6,7 @@ require 'ext/filemethods'
 require 'shining/preso'
 require 'shining/player'
 require 'shining/heroku'
+require 'shining/errors'
 
 module Shining
   class << self

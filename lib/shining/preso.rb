@@ -18,15 +18,11 @@ class Preso
       copy_templates
       vendorize!
     end
-    @config = json(@path/'config.json')
+    @config = json(@path/'config.json')      
   end
 
   def self.open dir
-    begin
-      new dir, false
-    rescue
-      raise "#{dir} is not a Shining presentation!"
-    end
+    new dir, false
   end
 
   def config refresh = false

@@ -44,7 +44,13 @@ module FileMethods
   end
 
   def json file
-    JSON.parse read_file(file)
+    begin
+      JSON.parse read_file(file)
+    rescue Errno::ENOENT
+      raise Shining::NoSuchFile, "File #{file} doesn't exist"
+    rescue 
+      raise Shining::CantParseJSONFile, "Couldn't parse contents of #{file} as JSON"
+    end
   end
 
   def expand path
