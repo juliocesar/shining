@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.3.2"
+  s.version = "1.3.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-05-19}
+  s.date = %q{2010-05-26}
   s.default_executable = %q{shine}
   s.description = %q{HTML + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
      "lib/shCore.js",
      "lib/shining.js",
      "lib/shining.rb",
+     "lib/shining/errors.rb",
      "lib/shining/heroku.rb",
      "lib/shining/player.rb",
      "lib/shining/preso.rb",
