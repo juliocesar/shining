@@ -11,3 +11,5 @@
   * add a white theme.
 - templates
   * templates should not need to be compiled, but instead, parsed/rendered straight in JS.
+- optimization
+  * bundling of CSS and JS.
