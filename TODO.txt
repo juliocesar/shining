@@ -1,0 +1,13 @@
+- lib/plugins/resize.js 
+  * resize smoothly, make sure on desktops it always fills the whole screen and that the font size
+    adapts to the actual dimensions available rather than just the width.
+- lib/shining/heroku.rb
+  * check if an app using the presentation's name exists.
+  * create apps using the application's name.
+  * delete app corresponding to a presentation.
+- lib/shining.js
+  * separate transitions for next and previous slides.
+- themes
+  * add a white theme.
+- templates
+  * templates should not need to be compiled, but instead, parsed/rendered straight in JS.
