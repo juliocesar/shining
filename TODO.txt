@@ -13,3 +13,6 @@
   * templates should not need to be compiled, but instead, parsed/rendered straight in JS.
 - optimization
   * bundling of CSS and JS.
+  * rely more on events so duplicate code is eliminated.
+- spec/tests
+  * write my own test suite for this app.

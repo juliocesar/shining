@@ -12,7 +12,7 @@ describe Shining::Preso do
     @preso = Shining::Preso.new TMP/'temp'
   end
 
-  describe '#new' do
+  context '#new' do
     it "creates a folder for the presentation on #new" do
       File.directory?(TMP/'temp').should be_true
     end
@@ -27,7 +27,7 @@ describe Shining::Preso do
     end
   end
   
-  describe "#open" do
+  context "#open" do
     it "opens an existing presentation" do
       preso = Shining::Preso.open TMP/'temp'
       preso.should be_an_instance_of(Shining::Preso)
@@ -38,7 +38,7 @@ describe Shining::Preso do
     end
   end
 
-  describe 'config' do
+  context 'config' do
     it "#config(true) force loads from config.json" do
       @preso.should_receive :json
       @preso.config(true)
@@ -50,7 +50,7 @@ describe Shining::Preso do
     end
   end
 
-  describe 'slides' do
+  context 'slides' do
     before do
       FileUtils.rm_f @preso.path/'slides'/'*.haml'
       FileUtils.rm_f @preso.path/'slides'/'*.markdown'      
@@ -66,7 +66,7 @@ describe Shining::Preso do
     end
   end
   
-  describe 'templates' do
+  context 'templates' do
     it "#templates returns exclusively these template formats: #{Shining::Preso::TEMPLATE_FORMATS.join(', ')}." do
       @preso.new_slide 'foo.haml'
       @preso.new_slide 'test.markdown'
