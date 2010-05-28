@@ -1,5 +1,5 @@
 {
-  "slides":       ["welcome"],
+  "slides":       ["welcome.html"],
   "title":        "Your presentation",
   "plugins":      ["resize", "syntaxhighlighter", "iphone"],
   "transitions":  "fade"

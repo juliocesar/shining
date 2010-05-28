@@ -3,13 +3,15 @@
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'shining'
+include Shining::FileMethods
 
 ACTIONS   = {
   :new_on!            => ['build'],
   :new_slide!         => ['slide'],
   :compile_templates! => ['compile'],
   :play               => ['play', 'go'],
-  :deploy             => ['deploy']
+  :deploy             => ['deploy'],
+  :remove             => ['remove', 'delete', 'rm']
 }
 
 def bail! reason
@@ -44,7 +46,9 @@ end
 
 def new_slide! name, format = 'html'
   preso = Shining::Preso.open Dir.pwd
-  preso.new_slide "#{name}.#{format}", :with => ['styles', 'script']
+  name, extension = name_and_extension(name)
+  extension = format if extension.blank?
+  preso.new_slide "#{name}.#{extension}", :with => ['styles', 'script']
 end
 
 def compile_templates!
@@ -61,6 +65,11 @@ end
 def deploy name = nil
   preso = Shining::Preso.open Dir.pwd
   Shining::Heroku.deploy preso, name
+end
+
+def remove slide
+  preso = Shining::Preso.open Dir.pwd
+  preso.remove_slide slide
 end
 
 figure_what_to_do!

@@ -38,6 +38,10 @@ module FileMethods
   def read_file file
     File.read file
   end
+  
+  def name_and_extension file
+    [basename(file, extname(file)), extname(file).sub(/^./, '')]
+  end
 
   def erb file
     ERB.new(read_file(file)).result(binding)
@@ -70,11 +74,13 @@ module FileMethods
   end
 
   def delete! file
-    dir?(file) ? FileUtils.rm_rf(file) : FileUtils.rm(file)
+    Shining.say " Deleting\t#{file}" do
+      dir?(file) ? FileUtils.rm_rf(file) : FileUtils.rm(file) rescue nil
+    end
   end
 
   def new_file path
-    Shining.say "  Creating file\t#{path}" do
+    Shining.say "  Creating\t#{path}" do
       File.open path, 'w' do |file|
         yieldage = yield if block_given?
         file.write yieldage unless yieldage.empty? or not yieldage.is_a?(String)

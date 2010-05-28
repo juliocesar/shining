@@ -24,6 +24,20 @@ describe Shining::FileMethods do
     dir?(TMP/'temp'/'adir').should be_true
   end
   
+  context '#delete' do
+    it 'deletes files' do
+      FileUtils.touch TMP/'temp'/'aboo'
+      delete! TMP/'temp'/'aboo'
+      File.exists?(TMP/'temp'/'aboo').should be_false
+    end
+    
+    it 'removes directories' do
+      FileUtils.mkdir TMP/'temp'/'dirone'
+      delete! TMP/'temp'/'dirone'
+      File.exists?(TMP/'temp'/'dirone').should be_false
+    end
+  end
+    
   context '#json' do
     it 'parses JSON' do
       File.open(TMP/'foo.json', 'w') { |file| file << "[1, 2, 3]" }

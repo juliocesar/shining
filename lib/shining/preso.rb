@@ -9,7 +9,6 @@ class Preso
   attr_accessor :path
 
   SLIDE_FORMATS     = %w(haml markdown html)
-  TEMPLATE_FORMATS  = SLIDE_FORMATS - ['html']
 
   def initialize dir, fresh = true
     @path   = expand(dir)
@@ -41,10 +40,6 @@ class Preso
     true
   end
 
-  def templates
-    Dir[path/'slides'/"*.{#{TEMPLATE_FORMATS.join(',')}}"].map { |template| basename(template) }
-  end
-
   def new_slide file, options = {}
     file = basename(file)
     name, format = basename(file, extname(file)), extname(file).sub(/^./, '')
@@ -52,27 +47,20 @@ class Preso
     new_file path/'slides'/file do Shining.sample_content_for(format) end
     new_file path/'slides'/"#{name}.css"  if options[:with].include?('styles') rescue nil
     new_file path/'slides'/"#{name}.js"   if options[:with].include?('script') rescue nil
-    config['slides'] << name and save_config!
+    config['slides'] << file and save_config!
+  end
+  
+  def remove_slide file
+    file = basename(file)
+    name, format = basename(file, extname(file)), extname(file).sub(/^./, '')    
+    delete! file
+    delete! "#{name}.css"
+    delete! "#{name}.js"
+    config['slides'].delete file and save_config!
   end
 
   def slides
     @config['slides']
-  end
-
-  def templates
-    Dir[path/'slides'/"*.{#{TEMPLATE_FORMATS.join(',')}}"].map { |t| basename(t) }
-  end
-
-  def compile_templates!
-    templates.each do |template|
-      begin
-        target   = basename(template).sub(extname(template), '.html')
-        rendered = Tilt.new(path/'slides'/template).render
-        new_file path/'slides'/target do rendered end
-      rescue RuntimeError
-        Shining.error "Tilt coult not compile #{File.basename template}. Skipping."
-      end
-    end
   end
 
   def vendorize!

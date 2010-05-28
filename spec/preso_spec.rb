@@ -29,8 +29,7 @@ describe Shining::Preso do
   
   context "#open" do
     it "opens an existing presentation" do
-      preso = Shining::Preso.open TMP/'temp'
-      preso.should be_an_instance_of(Shining::Preso)
+      @preso.should be_an_instance_of(Shining::Preso)
     end
     
     it "errors out if the directory is not a Shining presentation" do
@@ -56,34 +55,31 @@ describe Shining::Preso do
       FileUtils.rm_f @preso.path/'slides'/'*.markdown'      
     end
 
-    it "raises an error if the format is not in the allowed formats list" do
+    it "raises an error if the format is not Markdown, Haml, or HTML" do
       lambda do @preso.new_slide 'foo.erb' end.should raise_error(ArgumentError)
     end
 
     it "#new_slide creates a new Markdown/Haml/HTML template and adds it's name to the config file" do
       @preso.new_slide 'foo.haml'
-      JSON.parse(File.read(@preso.path/'config.json'))['slides'].should include('foo')
-    end
-  end
-  
-  context 'templates' do
-    it "#templates returns exclusively these template formats: #{Shining::Preso::TEMPLATE_FORMATS.join(', ')}." do
-      @preso.new_slide 'foo.haml'
-      @preso.new_slide 'test.markdown'
-      @preso.templates.should     include('foo.haml', 'test.markdown')
-      @preso.templates.should_not include('welcome.html')
+      JSON.parse(File.read(@preso.path/'config.json'))['slides'].should include('foo.haml')
     end
     
-    it "#compile_templates! compiles either Markdown/Haml templates into HTML (slides)" do
-      @preso.new_slide 'test2.haml'
-      @preso.new_slide 'test3.markdown'
-      @preso.compile_templates!
-      (File.exists?(@preso.path/'slides'/'test2.html') and
-        File.exists?(@preso.path/'slides'/'test3.html')).should be_true
-    end
+    context '#remove_slide' do
+      it "removes a slide along with it's script and style" do
+        @preso.new_slide 'aboo.html'
+        @preso.remove_slide 'aboo.html'
+        %(aboo.html aboo.css aboo.js).each do |file|
+          File.exists?(@preso.path/'slides'/file).should_not be_true
+        end
+      end
+      
+      it "removes the slide from the presentation's list of slides" do
+        @preso.slides.should_not include('aboo.html')
+      end      
+    end    
   end
-
-  it "returns a collection of slides on #slides, which is what's in @config['slides']" do
-    @preso.slides.should include('welcome')
+  
+  it "returns a list of the presentation's slides" do
+    @preso.slides.should include('welcome.html')
   end
 end

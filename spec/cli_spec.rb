@@ -43,29 +43,25 @@ describe 'shine' do
   end
 
   describe 'the slide option' do
-    it "creates a new slide and slide script named 'foo' on 'shine slide foo'" do
-      new_slide 'foo'
+    before do new_slide 'foo' end
+      
+    it 'defaults to HTML when no format is specified' do
       File.exists?(PRESO/'slides'/'foo.html').should be_true
+    end
+                
+    it 'creates a new slide script by default' do
       File.exists?(PRESO/'slides'/'foo.js').should be_true
     end
+    
+    it 'creates a slide stylesheet by default' do
+      File.exists?(PRESO/'slides'/'foo.css').should be_true
+    end
 
-    it "creates a new slide template named 'test.haml' on 'shine slide test haml'" do
+    it "creates a new Haml slide named 'test.haml' on 'shine slide test haml'" do
       new_slide 'test', 'haml'
       File.exists?(PRESO/'slides'/'test.haml').should be_true
       File.exists?(PRESO/'slides'/'test.js').should be_true
     end
-
-    it "updates the presentation's config file with the slide added" do
-      new_slide 'test'
-      config = JSON.parse(File.read(PRESO/'config.json'))
-      config['slides'].should include('test')
-    end
-  end
-
-  it "compiles a Haml template if there is one in #{'PRESO_ROOT'/'slides'/'test.haml'} with the 'compile' option" do
-    make_haml_template! 'test'
-    compile_templates
-    File.read(PRESO/'slides'/'test.html').should == "<p>LOOK MA</p>\n"
   end
   
   context 'go' do
