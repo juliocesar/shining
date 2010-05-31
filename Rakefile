@@ -23,11 +23,9 @@ begin
     gem.email               = "julio.ody@gmail.com"
     gem.homepage            = "http://shining.heroku.com"
     gem.authors             = "Julio Cesar Ody"
-    gem.add_dependency      'haml',           '>= 2.2.17'
     gem.add_dependency      'json_pure',      '>= 1.1.9'
-    gem.add_dependency      'tilt',           '>= 0.6'
-    gem.add_dependency      'rdiscount',      '>= 1.6.3'
     gem.add_dependency      'heroku',         '>= 1.9.9'
+    gem.add_dependency      'rack',           '>= 0.9'
     gem.add_development_dependency 'rspec', '1.3.0'
     gem.add_development_dependency 'jspec', '4.2.0'    
     gem.add_development_dependency 'rake',  '0.8.7'
