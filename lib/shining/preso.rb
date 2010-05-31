@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'json/pure'
-require 'tilt'
 
 module Shining
 

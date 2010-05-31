@@ -12,5 +12,6 @@
 - optimization
   * bundling of CSS and JS.
   * rely more on events so duplicate code is eliminated.
+  * perhaps bundle at the rackup file level?
 - spec/tests
   * write my own test suite for this app.
