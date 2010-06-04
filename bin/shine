@@ -11,7 +11,8 @@ ACTIONS   = {
   :compile_templates! => ['compile'],
   :play               => ['play', 'go'],
   :deploy             => ['deploy'],
-  :remove             => ['remove', 'delete', 'rm']
+  :remove             => ['remove', 'delete', 'rm'],
+  :version            => ['version']
 }
 
 def bail! reason
@@ -70,6 +71,10 @@ end
 def remove slide
   preso = Shining::Preso.open Dir.pwd
   preso.remove_slide slide
+end
+
+def version
+  Shining.say Shining::VERSION
 end
 
 figure_what_to_do!

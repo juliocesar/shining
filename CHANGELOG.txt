@@ -1,4 +1,10 @@
-= 1.3.4
+= 1.3.5
+
+* image loading now won't screw with the stage positioning.
+* slide styles loading now works again. Fuck my specless life.
+* shine version outputs the current version of Shining you have installed.
+
+= 1.3.4 (30/05/2010)
 
 * native Haml rendering through haml-js (http://github.com/creationix/haml-js) and
 Markdown via Showdown (http://attacklab.net/showdown/).

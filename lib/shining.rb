@@ -59,4 +59,5 @@ This is a new slide. It needs some lovin'!
       end
     end
   end
+  VERSION = File.read Shining.root/'VERSION'
 end
