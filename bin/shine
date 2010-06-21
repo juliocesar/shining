@@ -8,11 +8,11 @@ include Shining::FileMethods
 ACTIONS   = {
   :new_on!            => ['build'],
   :new_slide!         => ['slide'],
-  :compile_templates! => ['compile'],
+  :help_and_exit!     => ['help', '-h', '--help'],
   :play               => ['play', 'go'],
   :deploy             => ['deploy'],
   :remove             => ['remove', 'delete', 'rm'],
-  :version            => ['version']
+  :version            => ['version', '-v']
 }
 
 def bail! reason
@@ -32,11 +32,22 @@ end
 
 def help_and_exit!
   STDERR.puts <<-HELP
-Shine - Generates a new Shining presentation
+Shine - Generates a new Shining presentation.
   Usage:
     shine <directory>
   Example:
     shine mycoolpreso
+  Other commands you can run:
+    help        shows this menu
+    version     shows the current version of Shining you have installed
+  Commands you can run from inside a presentation directory:
+    slide       takes 1 argument with the slide name and optionally the format,
+                as in:
+                  $ shine slide pretty
+                The above will create a HTML slide called "pretty".
+    deploy      deploys the presentation to Heroku
+    remove      takes a slide name as argument. Removes the slide. Example:
+                  $ shine remove pretty
   HELP
   exit -1
 end
@@ -50,11 +61,6 @@ def new_slide! name, format = 'html'
   name, extension = name_and_extension(name)
   extension = format if extension.blank?
   preso.new_slide "#{name}.#{extension}", :with => ['styles', 'script']
-end
-
-def compile_templates!
-  preso = Shining::Preso.open Dir.pwd
-  preso.compile_templates!
 end
 
 def play
