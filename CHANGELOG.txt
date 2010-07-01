@@ -1,4 +1,8 @@
-= 1.3.5
+= 1.4.0
+
+* slide steps, so you can progressively show content.
+
+= 1.3.5 (20/06/2010)
 
 * image loading now won't screw with the stage positioning.
 * slide styles loading now works again. Fuck my specless life.

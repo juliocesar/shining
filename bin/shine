@@ -6,13 +6,14 @@ require 'shining'
 include Shining::FileMethods
 
 ACTIONS   = {
-  :new_on!            => ['build'],
-  :new_slide!         => ['slide'],
-  :help_and_exit!     => ['help', '-h', '--help'],
-  :play               => ['play', 'go'],
-  :deploy             => ['deploy'],
-  :remove             => ['remove', 'delete', 'rm'],
-  :version            => ['version', '-v']
+  :new_on!        => ['build'],
+  :new_slide!     => ['slide'],
+  :help_and_exit! => ['help', '-h', '--help'],
+  :play           => ['play', 'go'],
+  :deploy         => ['deploy'],
+  :remove         => ['remove', 'delete', 'rm'],
+  :version        => ['version', '-v'],
+  :start          => ['go', 'start']
 }
 
 def bail! reason
@@ -81,6 +82,13 @@ end
 
 def version
   Shining.say Shining::VERSION
+end
+
+def start port = 4567
+  preso = Shining::Preso.open Dir.pwd # simply to ensure it's a Shining preso dir
+  raise "Cannot find the rackup command in your path. Make sure Rack is installed!" if `which rackup`.empty?
+  puts "Shining started on port #{port}."
+  `rackup -p #{port}` 
 end
 
 figure_what_to_do!

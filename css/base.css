@@ -28,6 +28,8 @@ ul    { display: inline-block; margin-left: 2em }
 #stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }
 
+.step { display: none }
+
 div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -10px }
 
 #help {
