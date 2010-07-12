@@ -5,20 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.3.5"
+  s.version = "1.3.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-06-21}
+  s.date = %q{2010-07-12}
   s.default_executable = %q{shine}
   s.description = %q{HTML + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
   s.executables = ["shine"]
   s.extra_rdoc_files = [
-    "README.markdown"
+    "LICENSE.txt",
+     "README.markdown"
   ]
   s.files = [
     "CHANGELOG.txt",
+     "LICENSE.txt",
      "README.markdown",
      "Rakefile",
      "TODO.txt",
@@ -51,7 +53,7 @@ Gem::Specification.new do |s|
      "shining.gemspec",
      "spec/cli_spec.rb",
      "spec/filemethods_spec.rb",
-     "spec/generators_spec.rb",
+     "spec/heroku_spec.rb",
      "spec/javascripts/dom.html",
      "spec/javascripts/rhino.js",
      "spec/javascripts/sample/config.json",
@@ -92,7 +94,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/cli_spec.rb",
      "spec/filemethods_spec.rb",
-     "spec/generators_spec.rb",
+     "spec/heroku_spec.rb",
      "spec/preso_spec.rb",
      "spec/shining_spec.rb",
      "spec/spec_helper.rb"
@@ -106,6 +108,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<json_pure>, [">= 1.1.9"])
       s.add_runtime_dependency(%q<heroku>, [">= 1.9.9"])
       s.add_runtime_dependency(%q<rack>, [">= 0.9"])
+      s.add_runtime_dependency(%q<stringex>, [">= 1.1.0"])
       s.add_runtime_dependency(%q<jeweler>, [">= 1.4.0"])
       s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
       s.add_development_dependency(%q<jspec>, ["= 4.2.0"])
@@ -114,6 +117,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<json_pure>, [">= 1.1.9"])
       s.add_dependency(%q<heroku>, [">= 1.9.9"])
       s.add_dependency(%q<rack>, [">= 0.9"])
+      s.add_dependency(%q<stringex>, [">= 1.1.0"])
       s.add_dependency(%q<jeweler>, [">= 1.4.0"])
       s.add_dependency(%q<rspec>, ["= 1.3.0"])
       s.add_dependency(%q<jspec>, ["= 4.2.0"])
@@ -123,6 +127,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<json_pure>, [">= 1.1.9"])
     s.add_dependency(%q<heroku>, [">= 1.9.9"])
     s.add_dependency(%q<rack>, [">= 0.9"])
+    s.add_dependency(%q<stringex>, [">= 1.1.0"])
     s.add_dependency(%q<jeweler>, [">= 1.4.0"])
     s.add_dependency(%q<rspec>, ["= 1.3.0"])
     s.add_dependency(%q<jspec>, ["= 4.2.0"])
