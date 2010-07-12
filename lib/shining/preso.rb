@@ -5,7 +5,7 @@ module Shining
 
 class Preso
   include FileMethods and extend FileMethods
-  attr_accessor :path
+  attr_reader :path, :name
 
   SLIDE_FORMATS     = %w(haml markdown html)
 
@@ -16,7 +16,8 @@ class Preso
       copy_templates
       vendorize!
     end
-    @config = json(@path/'config.json')      
+    @config = json(@path/'config.json')
+    @name   = @config['title']
   end
 
   def self.open dir
@@ -48,10 +49,10 @@ class Preso
     new_file path/'slides'/"#{name}.js"   if options[:with].include?('script') rescue nil
     config['slides'] << file and save_config!
   end
-  
+
   def remove_slide file
     file = basename(file)
-    name, format = basename(file, extname(file)), extname(file).sub(/^./, '')    
+    name, format = basename(file, extname(file)), extname(file).sub(/^./, '')
     delete! file
     delete! "#{name}.css"
     delete! "#{name}.js"

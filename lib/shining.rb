@@ -23,12 +23,12 @@ module Shining
     end
     
     def say something
-      STDOUT.puts(something) unless quiet?
+      STDOUT.puts something unless quiet?
       yield if block_given?
     end
 
     def error message
-      STDERR.puts message
+      STDERR.puts message unless quiet?
     end
 
     def root

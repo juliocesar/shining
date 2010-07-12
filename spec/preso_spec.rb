@@ -1,17 +1,6 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe Shining::Preso do
-  before :all do
-    TMP = Dir.tmpdir/'shining-tmp' unless defined?(TMP)
-    FileUtils.rm_rf   TMP
-    FileUtils.mkdir_p TMP
-  end
-
-  before :each do
-    FileUtils.rm_rf TMP/'temp'
-    @preso = Shining::Preso.new TMP/'temp'
-  end
-
   context '#new' do
     it "creates a folder for the presentation on #new" do
       File.directory?(TMP/'temp').should be_true
@@ -29,7 +18,7 @@ describe Shining::Preso do
   
   context "#open" do
     it "opens an existing presentation" do
-      @preso.should be_an_instance_of(Shining::Preso)
+      @preso.should be_an_instance_of Shining::Preso
     end
     
     it "errors out if the directory is not a Shining presentation" do
@@ -81,5 +70,9 @@ describe Shining::Preso do
   
   it "returns a list of the presentation's slides" do
     @preso.slides.should include('welcome.html')
+  end
+  
+  it "returns the preso's name on #name" do
+    @preso.name.should == "Your presentation"
   end
 end

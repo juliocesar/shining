@@ -3,6 +3,7 @@
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'shining'
+require 'stringex'
 include Shining::FileMethods
 
 ACTIONS   = {
@@ -65,14 +66,15 @@ def new_slide! name, format = 'html'
 end
 
 def play
-  preso = Shining::Preso.open Dir.pwd
-  player = Shining::Player.new preso
+  preso   = Shining::Preso.open Dir.pwd
+  player  = Shining::Player.new preso
   player.go!
 end
 
 def deploy name = nil
-  preso = Shining::Preso.open Dir.pwd
-  Shining::Heroku.deploy preso, name
+  preso   = Shining::Preso.open(Dir.pwd)
+  heroku  = Shining::Heroku.new preso
+  heroku.deploy preso.name.to_url
 end
 
 def remove slide
@@ -85,7 +87,7 @@ def version
 end
 
 def start port = 4567
-  preso = Shining::Preso.open Dir.pwd # simply to ensure it's a Shining preso dir
+  preso = Shining::Preso.open Dir.pwd
   raise "Cannot find the rackup command in your path. Make sure Rack is installed!" if `which rackup`.empty?
   puts "Shining started on port #{port}."
   `rackup -p #{port}` 

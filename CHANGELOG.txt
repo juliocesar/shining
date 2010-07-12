@@ -1,6 +1,7 @@
-= 1.4.0
+= 1.3.6
 
 * slide steps, so you can progressively show content.
+* deploying to Heroku now tries to use the presentation's name as the application name.
 
 = 1.3.5 (20/06/2010)
 

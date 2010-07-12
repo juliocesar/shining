@@ -26,6 +26,7 @@ begin
     gem.add_dependency      'json_pure',      '>= 1.1.9'
     gem.add_dependency      'heroku',         '>= 1.9.9'
     gem.add_dependency      'rack',           '>= 0.9'
+    gem.add_dependency      'stringex',       '>= 1.1.0'
     gem.add_dependency      'jeweler',        '>= 1.4.0'
     gem.add_development_dependency 'rspec', '1.3.0'
     gem.add_development_dependency 'jspec', '4.2.0'    
