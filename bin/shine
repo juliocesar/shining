@@ -74,7 +74,8 @@ end
 def deploy name = nil
   preso   = Shining::Preso.open(Dir.pwd)
   heroku  = Shining::Heroku.new preso
-  heroku.deploy preso.name.to_url
+  name ||= preso.name.to_url
+  heroku.deploy name
 end
 
 def remove slide
