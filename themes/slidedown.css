@@ -1,9 +1,14 @@
-body          { background-color: rgb(255, 255, 255) }
-#stage        { color: rgb(0, 0, 0) }
+body          { background-color: #FFFFFF }
+#stage        { display: block; margin: 0; padding: 0 2em; color: #000000 }
 
-h1, h2, h3, p, li { color: rgb(238, 238, 238); text-shadow: rgb(0, 0, 0) 2px 2px 4px }
-a                 { color: rgb(73, 157, 255) }
+/* override centered */
+#stage h1, h2, h3 { text-align: left; margin: 0 }
+#stage p          { text-align: left; margin: 0 }
+
+a                 { color: #499DFF }
+ul, ol            { list-style-position: inside }
 ul                { list-style-type: disc }
+ol                { list-style-type: decimal }
 
-em            { color: rgb(73, 255, 80) }
-strong        { color: rgb(255, 171, 73); font-weight: bold }
+em            { color: #49FF50 }
+strong        { color: #FFAB49; font-weight: bold }
