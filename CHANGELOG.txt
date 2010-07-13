@@ -1,3 +1,8 @@
+= 1.3.7
+
+* fixed slide scripts not playing at the appropriate time when opened directly.
+* added a "mimic" slidedown theme.
+
 = 1.3.6
 
 * slide steps, so you can progressively show content.
