@@ -80,7 +80,7 @@ module FileMethods
   end
 
   def new_file path
-    Shining.say "  Creating\t#{path}" do
+    Shining.say "  #{file?(path) ? "Editing" : "Creating"}\t#{path}" do
       File.open path, 'w' do |file|
         yieldage = yield if block_given?
         file.write yieldage unless yieldage.empty? or not yieldage.is_a?(String)

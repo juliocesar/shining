@@ -62,7 +62,7 @@ def new_slide! name, format = 'html'
   preso = Shining::Preso.open Dir.pwd
   name, extension = name_and_extension(name)
   extension = format if extension.blank?
-  preso.new_slide "#{name}.#{extension}", :with => ['styles', 'script']
+  preso.new_slide "#{name}.#{extension}"
 end
 
 def play

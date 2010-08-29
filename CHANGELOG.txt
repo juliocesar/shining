@@ -1,4 +1,12 @@
-= 1.3.8
+= 2.0
+
+* The long waited code reorganisation.
+* More reliant on events rather than piling up functions one after another.
+* Dropped support for Haml altogether, since haml-js is crap and I don't want to become it's new maintainer.
+* Much better iPhone support. Sliding left and right navigates instead of touching.
+* iPad support, though that came sort of as a bonus.
+
+= 1.3.8 (I forgot)
 
 * Not loading the default theme directly from the index.html template.
 

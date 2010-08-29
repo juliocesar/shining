@@ -46,11 +46,6 @@ module Shining
 # #{name}
 This is a new slide. It needs some lovin'!
         CONTENTS
-      when 'haml'
-        <<-CONTENTS
-%h1.centered #{name}
-%p.centered This is a new slide. It needs some lovin'!
-        CONTENTS
       when 'html'
         <<-CONTENTS
 <h1 class="centered">#{name}</h1>
