@@ -8,7 +8,7 @@ ol, ul { list-style-type : none; }
 ins { text-decoration : none; }
 del { text-decoration : line-through }
 
-body    { font: 12px/1.5 "Lucida Grande", Tahoma, serif; overflow: hidden; text-align: center }
+body    { font: 12px/1.5 "Lucida Grande", Tahoma, serif; overflow: hidden !important; text-align: center }
 #stage  { position: relative; display: inline-block; padding: 40px 20px; max-width: 90%; text-align: left; margin: 0 auto }
 
 .no-text-shadow { text-shadow: none }
@@ -25,12 +25,9 @@ p     { margin: 0.5em 0 }
 
 ul    { display: inline-block; margin-left: 2em }
 
-#stage > * { text-rendering: optimizeLegibility }
 a          { cursor: pointer }
 
 .step { display: none }
-
-div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -10px }
 
 #help {
   display: inline-block;
@@ -45,3 +42,16 @@ div.slice { position: absolute; display: block; width: 0; top: -10px; bottom: -1
   padding: 10px;
 }
 
+@media all and (max-device-width: 480px) {
+  body { position: fixed; top: 0; bottom: 0; left: 0; right: 0 }
+  #stage { position: static }
+  #help     { font-size: 200% }
+  h1    { font-size: 3em }
+  h2    { font-size: 2.8em }
+  h3    { font-size: 2.5em }
+  p, li { font-size: 1.6em }
+  p     { margin: 0.5em 0 }
+  div.slide { position: absolute; width: 100% }
+  #stage { -webkit-box-shadow: none !important; border: 0 !important }
+  .step { display: inline-block }
+}
