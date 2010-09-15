@@ -10,5 +10,5 @@ strong            { color: #FFAB49; font-weight: bold }
 
 @media all and (max-device-width: 480px) {
   body  { background: #303030 }
-  h1    { line-height: 1em; margin-bottom: 0.2em !important}
+  h1    { line-height: 1em; margin-bottom: 0.2em !important }
 }

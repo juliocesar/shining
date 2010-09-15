@@ -58,6 +58,20 @@ aside, .step { display: none }
   .step { display: inline-block }
 }
 
+@media all and (min-device-width: 481px) and (max-device-width: 1024px) {
+  body { position: fixed; top: 0; bottom: 0; left: 0; right: 0 }
+  #stage { position: static }
+  #help     { font-size: 200% }
+  h1    { font-size: 3em }
+  h2    { font-size: 2.8em }
+  h3    { font-size: 2.5em }
+  p, li { font-size: 1.6em }
+  p     { margin: 0.5em 0 }
+  div.slide { position: absolute; width: 100% }
+  #stage { -webkit-box-shadow: none !important; border: 0 !important }
+  .step { display: inline-block }
+}
+
 #note {
 	position: fixed;
 	margin-bottom: 10px;
