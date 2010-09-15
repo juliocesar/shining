@@ -1,6 +1,6 @@
 body              { 
   background: #303030 url(/vendor/images/default-noise.png) repeat scroll;
-  background: -webkit-gradient(radial, 40% bottom, 500, 70% top, 400, from(rgba(99, 99, 99, 0)), to(rgba(97, 97, 97, 0.2))), #303030 url(/vendor/images/default-noise.png) repeat scroll;
+  background: -webkit-gradient(radial, 40% bottom, 500, 70% top, 400, from(rgba(99, 99, 99, 0)), to(rgba(99, 99, 99, 0.2))), #303030 url(/vendor/images/default-noise.png) repeat scroll;
 }
 h1, h2, h3, p, li { color: #EEEEEE; text-shadow: #000 2px 2px 4px }
 a                 { color: #499DFF; text-decoration: none }
