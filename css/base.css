@@ -65,7 +65,7 @@ aside, .step { display: none }
 	font-size: 1.5em;
 	bottom: 40px;
 	right: 10px;
-	padding: 15px 30px;
+	padding: 0.5em 1em;
 	color: #000;
 	background: #bc8a09; 
 	background: -moz-linear-gradient(center top , #e6d15e, #cab853) repeat scroll 0 0 transparent;
@@ -74,5 +74,5 @@ aside, .step { display: none }
 	-webkit-border-radius: 10px;
 	border-radius: 10px
 }
-#note:after {	content: "\00a0";	display: block; position: absolute;	bottom: -30px; right: 50px;	width: 0;	height: 0; border-width: 0 20px 30px 0px;	border-style: solid; border-color: transparent #cab853 }
+#note:after {	content: "\00a0";	display: block; position: absolute;	bottom: -30px; right: 30%;	width: 0;	height: 0; border-width: 0 20px 30px 0px;	border-style: solid; border-color: transparent #cab853 }
 #note a     { color: #000; border-bottom: 1px dotted #000 }
