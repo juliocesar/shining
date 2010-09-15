@@ -32,7 +32,6 @@ class Heroku
   end
     
   def deploy name
-    copy Shining.root/'lib'/'config.ru', @preso.path
     change_dir @preso.path
     Shining.say "Creating Git repository on #{@preso.path}" do `git init` end unless git_repo?
     Shining.say "Updating presentation's contents" do
