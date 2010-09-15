@@ -9,13 +9,15 @@ ins { text-decoration : none; }
 del { text-decoration : line-through }
 
 body    { font: 12px/1.5 "Lucida Grande", Tahoma, serif; overflow: hidden !important; text-align: center }
-#stage  { position: relative; display: inline-block; padding: 40px 20px; max-width: 90%; text-align: left; margin: 0 auto }
+#stage  { position: relative; top: 50%; display: inline-block; padding: 40px 20px; max-width: 90%; text-align: left; margin: 0 auto }
 
 .no-text-shadow { text-shadow: none }
 .no-drop-shadow {}
 .hidden         { display: none }
 .visible        { opacity: 1; display: static }
 .centered       { text-align: center; margin: 0 auto }
+
+html, body { height: 100% }
 
 h1    { font-size: 3.6em }
 h2    { font-size: 3.2em }
@@ -24,12 +26,12 @@ p, li { font-size: 1.4em }
 p     { margin: 0.5em 0 }
 
 ul    { display: inline-block; margin-left: 2em }
+a     { cursor: pointer }
 
-a          { cursor: pointer }
-
-.step { display: none }
+aside, .step { display: none }
 
 #help {
+  font-family: Helvetica, sans-serif !important;
   display: inline-block;
   font-size: 200%;
   opacity: 0;
@@ -55,3 +57,22 @@ a          { cursor: pointer }
   #stage { -webkit-box-shadow: none !important; border: 0 !important }
   .step { display: inline-block }
 }
+
+#note {
+	position: fixed;
+	margin-bottom: 10px;
+	text-align: left;
+	font-size: 1.5em;
+	bottom: 40px;
+	right: 10px;
+	padding: 15px 30px;
+	color: #000;
+	background: #bc8a09; 
+	background: -moz-linear-gradient(center top , #e6d15e, #cab853) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e6d15e), to(#cab853));	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px
+}
+#note:after {	content: "\00a0";	display: block; position: absolute;	bottom: -30px; right: 50px;	width: 0;	height: 0; border-width: 0 20px 30px 0px;	border-style: solid; border-color: transparent #cab853 }
+#note a     { color: #000; border-bottom: 1px dotted #000 }
