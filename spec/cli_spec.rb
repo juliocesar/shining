@@ -24,8 +24,8 @@ describe 'shine' do
     quiet "cd #{PRESO} && #{SHINE} compile"
   end
 
-  def make_haml_template!(name)
-    File.open(PRESO/'slides'/"#{name}.haml", 'w') { |f| f << "%p LOOK MA" }
+  def make_markdown_template!(name)
+    File.open(PRESO/'slides'/"#{name}.md", 'w') { |f| f << "# Look ma\n\nNo hands" }
   end
 
   before :all do
@@ -49,18 +49,9 @@ describe 'shine' do
       File.exists?(PRESO/'slides'/'foo.html').should be_true
     end
                 
-    it 'creates a new slide script by default' do
-      File.exists?(PRESO/'slides'/'foo.js').should be_true
-    end
-    
-    it 'creates a slide stylesheet by default' do
-      File.exists?(PRESO/'slides'/'foo.css').should be_true
-    end
-
-    it "creates a new Haml slide named 'test.haml' on 'shine slide test haml'" do
-      new_slide 'test', 'haml'
-      File.exists?(PRESO/'slides'/'test.haml').should be_true
-      File.exists?(PRESO/'slides'/'test.js').should be_true
+    it "creates a new Markdown slide named 'test.md' on 'shine slide test md'" do
+      new_slide 'test', 'md'
+      File.exists?(PRESO/'slides'/'test.md').should be_true
     end
   end
   

@@ -48,9 +48,9 @@ describe Shining::Preso do
       lambda do @preso.new_slide 'foo.erb' end.should raise_error(ArgumentError)
     end
 
-    it "#new_slide creates a new Markdown/Haml/HTML template and adds it's name to the config file" do
-      @preso.new_slide 'foo.haml'
-      JSON.parse(File.read(@preso.path/'config.json'))['slides'].should include('foo.haml')
+    it "#new_slide creates a new Markdown/HTML template and adds it's name to the config file" do
+      @preso.new_slide 'foo.md'
+      JSON.parse(File.read(@preso.path/'config.json'))['slides'].should include('foo.md')
     end
     
     context '#remove_slide' do

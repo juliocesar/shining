@@ -41,7 +41,7 @@ module Shining
 
     def sample_content_for format = 'html'
       case format
-      when 'markdown'
+      when 'markdown', 'md'
         <<-CONTENTS
 # #{name}
 This is a new slide. It needs some lovin'!
