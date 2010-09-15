@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shining}
-  s.version = "1.3.7"
+  s.version = "2.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-07-13}
+  s.date = %q{2010-09-15}
   s.default_executable = %q{shine}
   s.description = %q{HTML + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
@@ -28,19 +28,14 @@ Gem::Specification.new do |s|
      "bin/shine",
      "css/base.css",
      "css/effects.css",
-     "css/iphone.css",
-     "css/shCore.css",
+     "css/shAll.css",
      "css/shThemeFadeToGrey.css",
-     "images/help.png",
-     "images/magnifier.png",
-     "images/page_white_code.png",
-     "images/page_white_copy.png",
-     "images/printer.png",
+     "images/default-noise.png",
      "lib/config.ru",
      "lib/deps.js",
      "lib/ext/filemethods.rb",
      "lib/ext/string.rb",
-     "lib/jquery-1.4.1.min.js",
+     "lib/jquery-1.4.2.min.js",
      "lib/plugins/iphone.js",
      "lib/plugins/resize.js",
      "lib/plugins/syntaxhighlighter.js",
