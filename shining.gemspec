@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julio Cesar Ody"]
-  s.date = %q{2010-09-15}
+  s.date = %q{2010-09-17}
   s.default_executable = %q{shine}
   s.description = %q{HTML + CSS + Javascript = awesome presos}
   s.email = %q{julio.ody@gmail.com}
@@ -38,7 +38,6 @@ Gem::Specification.new do |s|
      "lib/jquery-1.4.2.min.js",
      "lib/plugins/iphone.js",
      "lib/plugins/resize.js",
-     "lib/plugins/syntaxhighlighter.js",
      "lib/shining.js",
      "lib/shining.rb",
      "lib/shining/errors.rb",
