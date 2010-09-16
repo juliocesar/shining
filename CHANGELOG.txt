@@ -1,10 +1,14 @@
-= 2.0
+= 2.0 (17/08/2010)
 
 * The long waited code reorganisation.
 * More reliant on events rather than piling up functions one after another.
 * Dropped support for Haml altogether, since haml-js is crap and I don't want to become it's new maintainer.
+* Presentation notes through <aside> tags.
 * Much better iPhone support. Sliding left and right navigates instead of touching.
 * iPad support, though that came sort of as a bonus.
+* Much stabler stage content centering.
+* Updated the default theme so it's less lame.
+* A kick-ass looking docs website! Check http://shining.heroku.com.
 
 = 1.3.8 (I forgot)
 
