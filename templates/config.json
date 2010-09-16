@@ -1,6 +1,6 @@
 {
   "slides":       ["welcome.html"],
   "title":        "Your presentation",
-  "plugins":      ["resize", "syntaxhighlighter", "iphone"],
+  "plugins":      ["resize", "iphone"],
   "transitions":  "fade"
 }
