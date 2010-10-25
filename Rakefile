@@ -25,9 +25,10 @@ begin
     gem.authors             = "Julio Cesar Ody"
     gem.add_dependency      'json_pure',      '>= 1.1.9'
     gem.add_dependency      'heroku',         '>= 1.9.9'
-    gem.add_dependency      'rack',           '>= 0.9'
+    gem.add_dependency      'rack',           '>= 1.0'
     gem.add_dependency      'stringex',       '>= 1.1.0'
     gem.add_dependency      'jeweler',        '>= 1.4.0'
+    gem.add_dependency      'rainbow',        '1.1'
     gem.add_development_dependency 'rspec', '1.3.0'
     gem.add_development_dependency 'jspec', '4.2.0'    
     gem.add_development_dependency 'rake',  '0.8.7'

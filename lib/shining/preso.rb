@@ -7,7 +7,7 @@ class Preso
   include FileMethods and extend FileMethods
   attr_reader :path, :name
 
-  SLIDE_FORMATS = %w(markdown html md)
+  SLIDE_FORMATS = %w(markdown md html)
 
   def initialize dir, fresh = true
     @path   = expand(dir)

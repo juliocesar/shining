@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'erb'
+require 'rainbow'
 
 module Shining
 
@@ -23,7 +24,7 @@ module FileMethods
   end
 
   def copy from, to
-    Shining.say("  Copying\t#{from} to #{to}") {
+    Shining.say("  #{"Copying".color(:blue).bright}\t#{from} to #{to}") {
       Dir[from].each do |something|
         File.directory?(something) ? FileUtils.cp_r(something, to) : FileUtils.cp(something, to)
       end
@@ -32,7 +33,7 @@ module FileMethods
 
   def new_dir dir, careful = true
     confirm "#{dir} already exists. Proceed?" if careful and dir?(dir)
-    Shining.say("  Creating\t#{dir}") { FileUtils.mkdir_p dir }
+    Shining.say("  #{"Creating".color(:green).bright}\t#{dir}") { FileUtils.mkdir_p dir }
   end
 
   def read_file file
@@ -74,13 +75,13 @@ module FileMethods
   end
 
   def delete! file
-    Shining.say " Deleting\t#{file}" do
+    Shining.say " #{"Deleting".color(:red).bright}\t#{file}" do
       dir?(file) ? FileUtils.rm_rf(file) : FileUtils.rm(file) rescue nil
     end
   end
 
   def new_file path
-    Shining.say "  #{file?(path) ? "Editing" : "Creating"}\t#{path}" do
+    Shining.say "  #{file?(path) ? "Editing".color(:yellow).bright : "Creating".color(:green).bright}\t#{path}" do
       File.open path, 'w' do |file|
         yieldage = yield if block_given?
         file.write yieldage unless yieldage.empty? or not yieldage.is_a?(String)
