@@ -53,9 +53,9 @@ class Preso
   def remove_slide file
     file = basename(file)
     name, format = basename(file, extname(file)), extname(file).sub(/^./, '')
-    delete! file
-    delete! "#{name}.css"
-    delete! "#{name}.js"
+    delete! path/'slides'/file
+    delete! path/'slides'/"#{name}.css"
+    delete! path/'slides'/"#{name}.js"
     config['slides'].delete file and save_config!
   end
 

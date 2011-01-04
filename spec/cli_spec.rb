@@ -20,10 +20,6 @@ describe 'shine' do
     quiet "cd #{PRESO} && #{SHINE} slide #{name} #{format}"
   end
 
-  def compile_templates
-    quiet "cd #{PRESO} && #{SHINE} compile"
-  end
-
   def make_markdown_template!(name)
     File.open(PRESO/'slides'/"#{name}.md", 'w') { |f| f << "# Look ma\n\nNo hands" }
   end
@@ -38,7 +34,7 @@ describe 'shine' do
     new_preso
   end
 
-  it "creates a new shining preso when passing an argument thats not 'build', 'compile', or 'slide'" do
+  it "creates a new shining preso when passing an argument thats not 'build', or 'slide'" do
     File.directory?(PRESO).should == true
   end
 
@@ -53,16 +49,5 @@ describe 'shine' do
       new_slide 'test', 'md'
       File.exists?(PRESO/'slides'/'test.md').should be_true
     end
-  end
-  
-  context 'go' do
-    it "for now it only works on Mac OSX" do
-      player = Shining::Player.new Shining::Preso.open(PRESO)
-      player.should_receive(:osx?).and_return(false)
-      lambda { player.go! }.should raise_error
-    end
-    
-    it "downloads and decompresses Plainview and if it's not found #{'PRESO_ROOT'/'vendor'/'Plainview.app'}"
-    it "fires up Plainview"
-  end
+  end  
 end

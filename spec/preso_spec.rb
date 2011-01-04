@@ -57,7 +57,7 @@ describe Shining::Preso do
       it "removes a slide along with it's script and style" do
         @preso.new_slide 'aboo.html'
         @preso.remove_slide 'aboo.html'
-        %(aboo.html aboo.css aboo.js).each do |file|
+        %w(aboo.html aboo.css aboo.js).each do |file|
           File.exists?(@preso.path/'slides'/file).should_not be_true
         end
       end

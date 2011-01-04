@@ -1,17 +1,9 @@
 require File.join(File.dirname(__FILE__), 'spec', 'spec_helper')
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/*_spec.rb']
-  t.spec_opts = ['--colour', '--format nested']
-end
-
-namespace :spec do
-  desc 'runs Javascript specs'
-  task :javascripts do
-    Dir.chdir File.join(File.dirname(__FILE__), 'spec', 'javascripts')
-    system "jspec run dom.html"
-  end
+RSpec::Core::RakeTask.new do |t| 
+  t.pattern = 'spec/**/*_spec.rb'
+  t.rspec_opts = ['-c', '-f nested', '-r ./spec/spec_helper']
 end
 
 begin
