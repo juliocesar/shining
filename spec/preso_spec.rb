@@ -52,18 +52,17 @@ describe Shining::Preso do
       @preso.new_slide 'foo.md'
       JSON.parse(File.read(@preso.path/'config.json'))['slides'].should include('foo.md')
     end
-    
-    context '#remove_slide' do
-      it "removes a slide along with it's script and style" do
-        @preso.new_slide 'aboo.html'
-        @preso.remove_slide 'aboo.html'
-        %w(aboo.html aboo.css aboo.js).each do |file|
-          File.exists?(@preso.path/'slides'/file).should_not be_true
-        end
-      end
       
-      it "removes the slide from the presentation's list of slides" do
-        @preso.slides.should_not include('aboo.html')
+    context '#remove_slide' do
+      context "removes a slide along with it's script and style, and from the list of slides in the preso" do
+        before do
+          @preso.new_slide 'aboo.html'
+          @preso.remove_slide 'aboo.html'
+        end
+        specify { File.exists?(@preso.path/'slides'/'aboo.html').should_not be_true }
+        specify { File.exists?(@preso.path/'slides'/'aboo.css').should_not be_true }        
+        specify { File.exists?(@preso.path/'slides'/'aboo.js').should_not be_true }        
+        specify { @preso.slides.should_not include('aboo.html') }
       end      
     end    
   end
