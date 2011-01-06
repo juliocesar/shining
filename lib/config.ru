@@ -1,14 +1,6 @@
 require 'rubygems'
 require 'json/pure'
 
-slides = Dir['slides/*.html']
-SLIDES = slides.inject({}) do |result, slide|
-  noext, name = File.basename(slide, File.extname(slide)), File.basename(slide)
-  result[name] = {:markup => File.read(slide)}
-  result[name][:script] = File.read("slides/#{noext}.js") if Dir["slides/#{noext}.js"].any?
-  result
-end
-
 use Rack::Static,
   :root => File.dirname(__FILE__),
   :urls => %w(/vendor/css /vendor/lib /config.json /vendor/themes /vendor/images)
@@ -22,10 +14,17 @@ end
 
 map '/slides.json' do
   run Proc.new { |env|
+    slides = Dir['slides/*[.html,.md,.markdown]']
+    slides = slides.inject({}) do |result, slide|
+      noext, name = File.basename(slide, File.extname(slide)), File.basename(slide)
+      result[name] = {:markup => File.read(slide)}
+      result[name][:script] = File.read("slides/#{noext}.js") if Dir["slides/#{noext}.js"].any?
+      result
+    end    
     [
       200,
-      { 'Content-Type' => 'application/x-json' },
-      [SLIDES.to_json]
+      { 'Content-Type' => 'application/x-json', 'Pragma' => 'no-cache' },
+      [slides.to_json]
     ] 
   }
 end

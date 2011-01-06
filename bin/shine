@@ -10,7 +10,6 @@ ACTIONS   = {
   :new_on!        => ['build'],
   :new_slide!     => ['slide'],
   :help_and_exit! => ['help', '-h', '--help'],
-  :play           => ['play', 'go'],
   :deploy         => ['deploy'],
   :remove         => ['remove', 'delete', 'rm'],
   :version        => ['version', '-v'],
@@ -63,12 +62,6 @@ def new_slide! name, format = 'html'
   name, extension = name_and_extension(name)
   extension = format if extension.blank?
   preso.new_slide "#{name}.#{extension}"
-end
-
-def play
-  preso   = Shining::Preso.open Dir.pwd
-  player  = Shining::Player.new preso
-  player.go!
 end
 
 def deploy name = nil
