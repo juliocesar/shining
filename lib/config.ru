@@ -1,10 +1,10 @@
 require 'rubygems'
 require 'json/pure'
+require 'rack/pagespeed'
 
 use Rack::Static,
   :root => File.dirname(__FILE__),
   :urls => %w(/vendor/css /vendor/lib /config.json /vendor/themes /vendor/images)
-use Rack::CommonLogger
   
 map '/' do
   run Proc.new { |env|
@@ -28,3 +28,4 @@ map '/slides.json' do
     ] 
   }
 end
+
