@@ -1,8 +1,7 @@
-div.slide { width: 85% }
+div.slide { width: 95% }
+body div.slide > * { text-align: left }
 body { 
-  text-align: left;
   padding: 2em;
-  font-family: "myriad-pro-condensed-1";
 	background-color: #c57830;
 	background-image: -webkit-gradient(linear, 0 100%, 100% 0,
 							color-stop(.25, #ecd893), color-stop(.25, transparent),
@@ -21,8 +20,7 @@ body {
 }
 
 h1 {
-  font-size: 5em;
-  font-family: "atrament-web-1";
+  font-size: 3.4em;
   color: #fff;
   text-shadow:  #340f07 -10px 10px 0px, #340f07 -9px 9px 0px, #340f07 -8px 8px 0px, #340f07 -7px 7px 0px,
                 #340f07 -6px 6px 0px, #340f07 -5px 5px 0px, #340f07 -4px 4px 0px, #340f07 -3px 3px 3px,
@@ -31,7 +29,7 @@ h1 {
 }
 
 p, ul {
-  font-size: 2em;
+  font-size: 1.6em;
   color: #fff;
   text-shadow:  #340f07 -6px 6px 0px, #340f07 -5px 5px 0px, #340f07 -4px 4px 0px, #340f07 -3px 3px 3px,
                 #340f07 -2px 2px 0px, #340f07 -1px 1px 0px, #340f07 1px 0px 0px, #340f07 0px -1px 0px,

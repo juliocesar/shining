@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'json/pure'
-require 'rack/pagespeed'
 
 use Rack::Static,
   :root => File.dirname(__FILE__),

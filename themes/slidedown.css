@@ -1,9 +1,9 @@
 body          { background-color: #FFFFFF }
-#stage        { display: block !important; margin: 0; padding: 0 2em; color: #000000 }
+div.slide     { display: block !important; margin: 0; padding: 0 2em; color: #000000 }
 
 /* override centered */
-#stage h1, h2, h3 { text-align: left; margin: 0 }
-#stage p          { text-align: left; margin: 0 }
+body .slide h1, h2, h3 { text-align: left; margin: 0 }
+body .slide p          { text-align: left; margin: 0 }
 
 a                 { color: #499DFF }
 ul, ol            { list-style-position: inside }
