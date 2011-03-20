@@ -1,0 +1,60 @@
+body          { background-color: #0C0C0C; color: #FFF; font-family: 'tenby-four-1'; padding: 0 0 0 10% }
+
+span.not  { text-decoration: line-through }
+
+/* override centered */
+body .slide             {
+  color: transparent;
+  position: absolute; 
+  text-align: left; 
+  -webkit-transition: all 300ms ease-out; 
+  -moz-transition: all 300ms ease-out; 
+  -o-transition: 300ms ease-out; 
+  transition: all 300ms ease-out;
+    -webkit-transform:  translate(-0.2em, -0.2em) scale (0.95);  
+  -webkit-transform-origin: left;
+  -moz-transform-origin: left;
+  -o-transform-origin: left;
+  transform-origin: left;
+  
+}
+body div.slide.current     { color: rgba(255, 255, 255, 1) }
+body div.slide.previous    { 
+  pointer-events: none;
+  -moz-transform:     translate(-2em, -2em) scale(0.9);
+  -webkit-transform:  translate(-2em, -2em) scale(0.9);  
+  -o-transform:       translate(-2em, -2em) scale(0.9);
+  transform:          translate(-2em, -2em) scale(0.9);
+  display: block; 
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.1)
+}
+body div.slide.previous a  { color: inherit; text-shadow: 0px 0px 6px rgba(235, 50, 31, 0.3) }
+body div.slide.next    {
+  pointer-events: none;
+  -moz-transform:     translate(2em, 2em) scale(1.2);
+  -webkit-transform:  translate(2em, 2em) scale(1.2);  
+  -o-transform:       translate(2em, 2em) scale(1.2);
+  transform:          translate(2em, 2em) scale(1.2);
+  display: block;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0)
+}
+body div.slide.next a {
+  opacity: 0;
+}
+body div.slide h1, h2, h3  { font-weight: 700 }
+body div.slide p           { font-weight: 300; font-size: 1.6em }
+body div.slide ul           { font-size: 1.4em }
+
+a                 { color: #EB321F }
+ul, ol            { list-style-position: inside }
+ul                { list-style-type: none }
+ol                { list-style-type: decimal }
+
+em            { font-weight: bold }
+code          { font-size: 1.3em }
+
+@media all and (max-device-width: 480px) {
+  body .slide { color: #fff; width: 100% !important; -webkit-box-sizing: border-box; }
+  code { word-wrap: break-word }
+
+}

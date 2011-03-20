@@ -8,8 +8,9 @@ ol, ul { list-style-type : none; }
 ins { text-decoration : none; }
 del { text-decoration : line-through }
 
-body    { font: 12px/1.5 "Lucida Grande", Tahoma, serif; overflow: hidden !important; text-align: center }
-#stage  { position: relative; top: 50%; display: inline-block; padding: 40px 20px; max-width: 90%; text-align: left; margin: 0 auto }
+body      { font: 12px/1.5 "Lucida Grande", Tahoma, serif; overflow: hidden !important; text-align: center }
+div.slide { display: none; position: relative }
+div.slide.current { display: block }
 
 .no-text-shadow { text-shadow: none }
 .no-drop-shadow {}
@@ -33,7 +34,7 @@ aside, .step { display: none }
 #help {
   font-family: Helvetica, sans-serif !important;
   display: inline-block;
-  font-size: 200%;
+  font-size: 100%;
   opacity: 0;
   position: fixed;
   right: 10px;
@@ -44,31 +45,32 @@ aside, .step { display: none }
   padding: 10px;
 }
 
+.slide { box-sizing: border-box }
+
 @media all and (max-device-width: 480px) {
   body { position: fixed; top: 0; bottom: 0; left: 0; right: 0 }
-  #stage { position: static }
   #help     { font-size: 200% }
   h1    { font-size: 3em }
   h2    { font-size: 2.8em }
   h3    { font-size: 2.5em }
   p, li { font-size: 1.6em }
   p     { margin: 0.5em 0 }
-  div.slide { position: absolute; width: 100% }
-  #stage { -webkit-box-shadow: none !important; border: 0 !important }
+  body .slide { position: absolute; width: 100% !important; -webkit-box-sizing: border-box; -webkit-transition: none !important }
   .step { display: inline-block }
 }
 
-@media all and (min-device-width: 481px) and (max-device-width: 1024px) {
-  body { position: fixed; top: 0; bottom: 0; left: 0; right: 0 }
-  #stage { position: static }
+@media all and (max-device-width: 1024px) {
+  div.slide { 
+    width: 768px !important;
+    position: absolute;
+    display: inline-block;
+  }
   #help     { font-size: 200% }
   h1    { font-size: 3em }
   h2    { font-size: 2.8em }
   h3    { font-size: 2.5em }
   p, li { font-size: 1.6em }
   p     { margin: 0.5em 0 }
-  div.slide { position: absolute; width: 100% }
-  #stage { -webkit-box-shadow: none !important; border: 0 !important }
   .step { display: inline-block }
 }
 
@@ -76,7 +78,7 @@ aside, .step { display: none }
 	position: fixed;
 	margin-bottom: 10px;
 	text-align: left;
-	font-size: 1.5em;
+	font-size: 100%;
 	bottom: 40px;
 	right: 10px;
 	padding: 0.5em 1em;
